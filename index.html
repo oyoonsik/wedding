@@ -7,7 +7,11 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&display=swap" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+
+    <script src="./js/confetti.js" charset="utf-8"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -43,24 +47,143 @@
     </div>
 
     <section class="main_visual">
-        <p class="wedding_date reveal">2026. 10. 10</p>
-        <h1 class="wedding_names reveal">Oh Yoonsik & Park Hyemi</h1>
-        <div class="img_frame reveal">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000" alt="Main Photo">
+        <div class="img_frame">
+            <img src="./img/sample01.png" alt="Main Photo">
         </div>
-        <p class="location reveal">서울 L65호텔웨딩컨벤션</p>
+        <canvas id="confetti-canvas"></canvas>
+        <span class="corner-text top-left">MEANT</span>
+        <span class="corner-text bottom-left">TO BE</span>
+        <span class="corner-text bottom-right">TOGETHER</span>
+
+      <div class="poster-date">
+            <span class="date-num">10</span>
+            <span class="date-num">10</span>
+            <span class="year-num">2026</span>
+    </div>
     </section>
 
     <section class="greeting reveal">
-        <h2>INVITATION</h2>
+        <div class="title-area">
+            <span class="eng-title">INVITATION</span>
+            <h2 class="kor-title">소중한 분들을 초대합니다</h2>
+        </div>
+        
         <div class="greeting_text">
-            곁에 있을 때 가장 나다워지는<br>
-            사람을 만났습니다.<br><br>
-            서로가 마주 보며 다져온 약속을<br>
-            이제는 함께 걸어가며 지키려 합니다.<br><br>
-            함께 축복해 주시면 감사하겠습니다.
+            저희 두 사람의 작은 만남이<br>
+            사랑의 결실을 이루어<br>
+            소중한 결혼식을 올리게 되었습니다.<br><br>
+
+            평생 서로 귀하게 여기며<br>
+            첫 마음 그대로 존중하고 배려하며 살겠습니다.<br><br>
+
+            오로지 믿음과 사랑을 약속하는 날<br>
+            오셔서 축복해 주시면 더없는 기쁨으로<br>
+            간직하겠습니다.
         </div>
     </section>
+
+    <section class="family-section reveal">
+        <div class="family-photo">
+            <img src="img/mkbtg001461.jpg" alt="신랑 신부">
+        </div>
+
+        <div class="family-row">
+            <div class="family-text">
+                <span class="p-names">오영철 · 이금하</span>
+                <span class="p-rel">의 아들</span>
+                <span class="m-name">윤식</span>
+            </div>
+            <button class="round-contact-btn" onclick="openContact('groom')">연락하기</button>
+        </div>
+
+        <div class="family-row">
+            <div class="family-text">
+                <span class="p-names">박호철 · 장환순</span>
+                <span class="p-rel">의 딸</span>
+                <span class="m-name">혜미</span>
+            </div>
+            <button class="round-contact-btn" onclick="openContact('bride')">연락하기</button>
+        </div>
+    </section>
+
+    <div id="contactModal" class="modal-overlay" onclick="closeContact()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span id="modalTitle">연락하기</span>
+                <button class="close-x" onclick="closeContact()">✕</button>
+            </div>
+            <div id="contactList" class="contact-list">
+                </div>
+        </div>
+    </div>
+
+    <section class="interview-section reveal">
+    <div class="interview-header">
+        <span class="eng-title">INTERVIEW</span>
+        <h3 class="kor-subtitle">우리 두 사람의 이야기</h3>
+        <p class="desc-text">
+            결혼을 앞두고 저희 두 사람의<br>
+            인터뷰를 준비했습니다.
+        </p>
+    </div>
+
+    <div class="interview-photos">
+        <div class="photo-box">
+            <img src="img/groom_interview.jpg" alt="신랑">
+        </div>
+        <div class="photo-box">
+            <img src="img/bride_interview.jpg" alt="신부">
+        </div>
+    </div>
+
+    <button class="interview-btn" onclick="openInterview()">
+        <span class="btn-icon">✉</span> 신랑 & 신부의 인터뷰 읽어보기
+    </button>
+</section>
+
+<div id="interviewModal" class="modal-overlay" onclick="closeInterview()">
+    <div class="modal-content interview-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <span class="modal-title">INTERVIEW</span>
+            <button class="close-x" onclick="closeInterview()">✕</button>
+        </div>
+        
+       <div class="interview-body">
+            <div class="qna-box">
+                <p class="q">Q1. 결혼을 앞둔 소감</p>
+                
+                <div class="answer-block">
+                    <p class="speaker">🤵 신랑 오윤식</p>
+                    <p class="a">
+                        드디어 장가갑니다! 😄 먼저 인생에서 가장 큰 결심을 할 수 있게 해준 예비 신부에게 너무 고맙습니다.<br><br>
+                        가족이라는 단어를 함께 한다는 것은 정말 설레고 아름다운 일이지만 그만큼 책임감을 더 갖고 살아야겠다고 다짐했습니다.<br><br>
+                        저희 부부가 한걸음 한걸음 성장해 나가는 모습을 지켜봐주시고 응원해주세요💛💛
+                    </p>
+                </div>
+
+                <div class="answer-block">
+                    <p class="speaker">👰‍♀️ 신부 박혜미</p>
+                    <p class="a">
+                        오래된 연인에서 이제는 서로의 부부가 되기로 약속 했습니다!<br><br>
+                        아직은 남자친구라는 말이 더 익숙하지만 그동안 제 옆을 든든하게 지켜주면서 큰 행복을 준, <br>
+                        이제는 저의 평생의 반려자가 된 신랑 에게도 좋은 아내로서 더욱 배려하며 큰 힘이 되는 존재로 살겠습니다🥰
+                    </p>
+                </div>
+            </div>
+
+            <div class="qna-box">
+                <p class="q">Q2. 결혼을 결심한 계기는?</p>
+                <div class="answer-block">
+                    <p class="a">
+                        함께 라면 그 어떤 어려움이 있더라도 잘 헤쳐나갈 수 있다고 자신하게 되었습니다.<br><br>
+                        함께 시간을 보내면서 서로에 대한 믿음과 애정이 쌓이게 되고 이러한 행동들이 몸에 배어서<br>
+                        서로에게 👩‍❤️‍👨좋은 엄마, 🤵좋은 아빠가 될 수 있다는 확신이 들어 결혼을 결심하게 되었습니다😄
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <section class="gallery reveal">
         <h2>GALLERY</h2>
@@ -150,6 +273,64 @@ window.addEventListener('click', () => {
     }
 }, { once: true });
 </script>
+
+<script>
+    const contactData = {
+    groom: [
+        { rel: "신랑", name: "오윤식", tel: "010-9961--6199" },
+        { rel: "신랑 아버지", name: "오영철", tel: "010-3782-3442" },
+        { rel: "신랑 어머니", name: "이금하", tel: "010-5000-1320" }
+    ],
+    bride: [
+        { rel: "신부", name: "박혜미", tel: "010-9159-3303" },
+        { rel: "신부 아버지", name: "박호철", tel: "010-1111-1111" },
+        { rel: "신부 어머니", name: "장환순", tel: "010-1111-1111" }
+    ]
+};
+
+function openContact(type) {
+    const list = document.getElementById('contactList');
+    list.innerHTML = ''; // 초기화
+    document.getElementById('modalTitle').innerText = type === 'groom' ? '신랑측 연락처' : '신부측 연락처';
+
+    contactData[type].forEach(person => {
+        list.innerHTML += `
+            <div class="contact-item-box">
+                <div class="contact-info-text">
+                    <span class="info-rel">${person.rel}</span>
+                    <span class="info-name">${person.name}</span>
+                </div>
+                <div class="contact-actions">
+                    <a href="tel:${person.tel}" class="action-link">📞</a>
+                    <a href="sms:${person.tel}" class="action-link">✉️</a>
+                </div>
+            </div>
+        `;
+    });
+
+    const modal = document.getElementById('contactModal');
+    modal.classList.add('active');
+}
+
+function closeContact() {
+    document.getElementById('contactModal').classList.remove('active');
+}
+</script>
+
+
+<script>
+
+ // 인터뷰 팝업 열기
+function openInterview() {
+    document.getElementById('interviewModal').classList.add('active');
+}
+
+// 인터뷰 팝업 닫기
+function closeInterview() {
+    document.getElementById('interviewModal').classList.remove('active');
+}
+</script>
+
 
 </body>
 </html>
