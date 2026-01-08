@@ -133,15 +133,23 @@ body {
     top: 0; left: 0;
     width: 100%; height: 100%;
     z-index: 0;
+      
+     /* 이미지가 부모 요소를 꽉 채우도록 설정 */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
 .img_frame img {
     width: 100%; height: 100%;
     object-fit: cover;
-    /* 사진 위치 조절: 얼굴이 잘리면 center top 등으로 변경해보세요 */
-    object-position: center; 
+    object-position: center;
     filter: brightness(0.85); 
-    display: block;
+
+    /* [중요] 3. 이미지를 블록으로 바꿔서 하단 미세 틈(3px) 제거 */
+    display: block; 
+    /* 혹시 몰라 추가하는 안전장치 */
+    vertical-align: bottom;
 }
 
 /* 모서리 영문 텍스트 (위치 미세 조정) */
