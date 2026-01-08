@@ -11,6 +11,7 @@
     <link href="./css/style.css" rel="stylesheet">
 
     <script src="./js/confetti.js" charset="utf-8"></script>
+    <script src="./js/startCountdown.js" charset="utf-8"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -185,11 +186,130 @@
     </div>
 </div>
 
-    <section class="gallery reveal">
-        <h2>GALLERY</h2>
-        <div class="box_dummy"></div>
-        <div class="box_dummy"></div>
-    </section>
+<section class="gallery-section reveal">
+    <div class="gallery-header">
+        <span class="eng-title">GALLERY</span>
+        <h3 class="kor-subtitle">웨딩 갤러리</h3>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item tall">
+            <img src="img/gallery1.jpg" alt="웨딩사진1" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery2.jpg" alt="웨딩사진2" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery3.jpg" alt="웨딩사진3" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery4.jpg" alt="웨딩사진4" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery5.jpg" alt="웨딩사진5" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery6.jpg" alt="웨딩사진6" onclick="viewPhoto(this)">
+        </div>
+    </div>
+
+    <div class="more-btn-wrap" id="moreBtnWrap">
+        <button class="gallery-more-btn" onclick="expandGallery()">
+            더보기 <span class="arrow-down">∨</span>
+        </button>
+    </div>
+</section>
+
+
+<section class="calendar-section reveal">
+    <div class="calendar-header">
+        <span class="cal-year">2026.10.10</span>
+        <span class="cal-time">토요일 오후 12시 30분</span>
+    </div>
+
+    <div class="calendar-wrap">
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th class="sun">일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td> <td></td> <td></td> <td></td> <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td class="sun">4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td class="holliday">9</td> <td class="d-day"><span>10</span></td> </tr>
+                <tr>
+                    <td class="sun">11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                </tr>
+                <tr>
+                    <td class="sun">18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td class="sun">25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>31</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="countdown-area">
+        <div class="timer-box">
+            <div class="time-item"><span id="days">0</span><span class="label">DAYS</span></div>
+            <div class="colon">:</div>
+            <div class="time-item"><span id="hours">00</span><span class="label">HOUR</span></div>
+            <div class="colon">:</div>
+            <div class="time-item"><span id="mins">00</span><span class="label">MIN</span></div>
+            <div class="colon">:</div>
+            <div class="time-item"><span id="secs">00</span><span class="label">SEC</span></div>
+        </div>
+        <p class="d-day-text">
+            윤식, 혜미의 결혼식이 <span id="d-day-count" class="accent-text"></span>일 남았습니다.
+        </p>
+    </div>
+</section>
+
+
+
+<div id="photoModal" class="modal-overlay" onclick="closePhoto()">
+    <div class="photo-modal-content">
+        <img id="modalImg" src="">
+        <button class="close-x-white" onclick="closePhoto()">✕</button>
+    </div>
+</div>
+
+
 </div>
 
 <script>
@@ -331,6 +451,30 @@ function closeInterview() {
 }
 </script>
 
+<script>
+    // 갤러리 더보기 기능
+function expandGallery() {
+    const grid = document.getElementById('galleryGrid');
+    const btnWrap = document.getElementById('moreBtnWrap');
+    
+    // 높이 제한 해제
+    grid.classList.add('expanded');
+    // 버튼 및 그라데이션 숨김
+    btnWrap.classList.add('hidden');
+}
+
+// (선택) 사진 클릭 시 확대 보기
+function viewPhoto(img) {
+    const modal = document.getElementById('photoModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = img.src;
+    modal.classList.add('active');
+}
+
+function closePhoto() {
+    document.getElementById('photoModal').classList.remove('active');
+}
+</script>
 
 </body>
 </html>
