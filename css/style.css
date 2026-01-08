@@ -1,0 +1,179 @@
+ :root {
+            --bg-color: #ffffff;
+            --text-main: #222;
+            --text-sub: #888;
+            --point: #bfa67a;
+            --section-space: 100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: #f8f8f8; 
+            font-family: 'Pretendard', sans-serif; 
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        #wrap {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        /* 공통 애니메이션 클래스 */
+        .reveal { opacity: 0; }
+
+        /* 메인 비주얼 */
+        .main_visual {
+            padding: 80px 30px;
+            text-align: center;
+        }
+        .wedding_date {
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+        }
+        .wedding_names {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 25px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+        .img_frame {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background-color: #eee; /* 이미지 없을 때 대비 */
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .img_frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: var(--section-space) 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: var(--point);
+            margin-bottom: 30px;
+        }
+
+        .greeting_text {
+            line-height: 2.2;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        /* 가상의 갤러리 섹션 */
+        .gallery { background-color: #fafafa; }
+        .box_dummy {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            margin-bottom: 10px;
+        }
+
+         /* 인트로 */
+        .intro-section {
+            position: fixed;
+            top: 0; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 100%; 
+            height: 100vh;
+            height: 100dvh; 
+            max-width: 700px; 
+            background: #fff;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .intro-img-frame {
+            width: 100%; height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-img-frame img {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            /* 글자 선명도 유지 */
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .intro-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .main-title {
+            font-size: 60px;
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+
+        .sub-text-wrap {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 40px;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+
+        .music-btn {
+        position: fixed;
+        top: 20px;
+        right: calc(50% - 205px); /* 화면 중앙 450px 기준 우측 상단 */
+        z-index: 2000;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    /* 음악 재생 중일 때 움직이는 막대 애니메이션 (선택 사항) */
+    .music-bar-wrap {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 12px;
+    }
+    .bar {
+        width: 2px;
+        background: var(--point);
+        height: 100%;
+        animation: bounce 0.8s infinite alternate;
+        animation-play-state: paused; /* 기본은 멈춤 */
+    }
+    .music-btn.playing .bar { animation-play-state: running; }
+
+    @keyframes bounce {
+        from { height: 3px; }
+        to { height: 12px; }
+    }
+
+    /* 모바일 대응: 화면이 작아지면 여백 조절 */
+    @media (max-width: 450px) {
+        .music-btn { right: 20px; }
+    }
