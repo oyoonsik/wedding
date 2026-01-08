@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윤식♥혜미 결혼합니다.</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #222;
+            --text-sub: #888;
+            --point: #bfa67a;
+            --section-space: 100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: #f8f8f8; 
+            font-family: 'Pretendard', sans-serif; 
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        #wrap {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        /* 공통 애니메이션 클래스 */
+        .reveal { opacity: 0; }
+
+        /* 메인 비주얼 */
+        .main_visual {
+            padding: 80px 30px;
+            text-align: center;
+        }
+        .wedding_date {
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+        }
+        .wedding_names {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 25px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .img_frame {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background-color: #eee; /* 이미지 없을 때 대비 */
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .img_frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: var(--section-space) 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: var(--point);
+            margin-bottom: 30px;
+        }
+
+        .greeting_text {
+            line-height: 2.2;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        /* 가상의 갤러리 섹션 */
+        .gallery { background-color: #fafafa; }
+        .box_dummy {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            margin-bottom: 10px;
+        }
+
+         /* 인트로 */
+        .intro-section {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: #fff;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .intro-img-frame {
+            width: 100%; height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-img-frame img {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            /* 글자 선명도 유지 */
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .intro-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .main-title {
+            font-size: 60px;
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+
+        .sub-text-wrap {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 40px;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="intro" class="intro-section">
+    <div class="intro-img-frame">
+        <img src="./img/pc002232775.jpg" alt="Intro Photo">
+        <div class="intro-text">
+            <h1 class="main-title">LOVE OF<br>LIFE —</h1>
+            <div class="sub-text-wrap">
+                <span>WEDDING</span>
+                <span>INVITATION</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="wrap">
+    <section class="main_visual">
+        <p class="wedding_date reveal">2026. 10. 10</p>
+        <h1 class="wedding_names reveal">Oh Yoonsik & Park Hyemi</h1>
+        <div class="img_frame reveal">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000" alt="Main Photo">
+        </div>
+        <p class="location reveal">서울 L65호텔웨딩컨벤션</p>
+    </section>
+
+    <section class="greeting reveal">
+        <h2>INVITATION</h2>
+        <div class="greeting_text">
+            곁에 있을 때 가장 나다워지는<br>
+            사람을 만났습니다.<br><br>
+            서로가 마주 보며 다져온 약속을<br>
+            이제는 함께 걸어가며 지키려 합니다.<br><br>
+            함께 축복해 주시면 감사하겠습니다.
+        </div>
+    </section>
+
+    <section class="gallery reveal">
+        <h2>GALLERY</h2>
+        <div class="box_dummy"></div>
+        <div class="box_dummy"></div>
+    </section>
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+window.onload = () => {
+    // 1. 전체 타임라인 생성 (인트로 -> 메인 비주얼 연결)
+    const masterTl = gsap.timeline();
+
+    // [Step 1] 인트로 애니메이션
+    masterTl
+        .from(".intro-text", {
+            opacity: 0,
+            y: 30,
+            duration: 1.5,
+            ease: "power3.out"
+        })
+        .to("#intro", {
+            delay: 1,
+            duration: 1.5,
+            yPercent: -100, // 인트로가 위로 슬라이드
+            ease: "power4.inOut"
+        })
+        // [Step 2] 메인 비주얼 (#wrap) 등장 (인트로가 거의 끝날 때쯤 시작)
+        .from("#wrap", {
+            opacity: 0,
+            y: 50,
+            duration: 1.2,
+            clearProps: "all" 
+        }, "-=0.8")
+        // [Step 3] 메인 내부 요소들 순차적 등장
+        .to(".wedding_date", { opacity: 1, y: -10, duration: 1 }, "-=0.4")
+        .to(".wedding_names", { opacity: 1, y: -10, duration: 1 }, "-=0.7")
+        .to(".img_frame", { opacity: 1, y: -10, duration: 1.2 }, "-=0.7")
+        .to(".location", { opacity: 1, duration: 1 }, "-=0.6");
+
+    // 2. 스크롤 트리거 (인사말, 갤러리 등 하단 섹션)
+    // 인트로 이후에 나오는 요소들만 대상으로 합니다.
+    const revealEls = document.querySelectorAll('.reveal:not(.main_visual .reveal)');
+    
+    revealEls.forEach((el) => {
+        gsap.to(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none none"
+                // once: true, // 한 번만 실행되게 하려면 추가
+            },
+            opacity: 1,
+            y: -20,
+            duration: 1.5,
+            ease: "power2.out"
+        });
+    });
+
+    // (옵션) 인트로 진행 중에는 스크롤을 막고 싶다면?
+    // masterTl이 끝나기 전까지 body의 overflow를 숨겼다가 완료 후 푸는 로직을 추가할 수 있습니다.
+};
+</script>
+
+</body>
+</html>
