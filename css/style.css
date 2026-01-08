@@ -20,7 +20,7 @@ body {
     margin: 0 auto;
     background-color: var(--bg-color);
     min-height: 100vh;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     position: relative;
     box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
@@ -793,4 +793,76 @@ body {
 .accent-text {
     color: #e66a6a;
     font-weight: bold;
+}
+
+/* =========================================
+   [오시는 길 - API 지도 & 버튼 스타일]
+   ========================================= */
+.location-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.venue-info { margin-bottom: 30px; font-family: 'Noto Serif KR', serif; }
+.venue-name { font-size: 20px; font-weight: 600; margin-bottom: 10px; color: #333; }
+.venue-addr { font-size: 15px; color: #666; margin-bottom: 5px; }
+.venue-tel { font-size: 14px; color: #999; }
+
+/* 1. API 지도 프레임 */
+.api-map-frame {
+    width: 100%;
+    height: 300px; /* 지도 높이 */
+    border: 1px solid #eee; /* 테두리 살짝 */
+    margin: 0 auto 15px; /* 버튼과의 간격 */
+    border-radius: 5px; /* 모서리 살짝 둥글게 */
+}
+
+/* 2. 약도 이미지 보기 버튼 (핵심 디자인) */
+.static-map-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px; /* 너무 넓어지지 않게 제한 */
+    margin: 0 auto 40px;
+    padding: 15px 0;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px; /* 둥근 모서리 */
+    color: #444;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* 아주 연한 그림자 */
+    transition: all 0.2s;
+}
+
+.static-map-btn:active {
+    background-color: #f5f5f5;
+    transform: scale(0.98);
+}
+
+.map-icon { margin-right: 5px; }
+
+/* 3. 내비게이션 영역 */
+.navi-section { text-align: left; padding-top: 20px; border-top: 1px solid #f9f9f9; }
+.navi-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 5px; }
+.navi-desc { font-size: 12px; color: #999; margin-bottom: 15px; }
+
+.navi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.navi-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 0;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #444;
+    background: #fdfdfd;
 }
