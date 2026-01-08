@@ -164,8 +164,8 @@ body {
     text-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
-.top-left { top: 25px; left: 20px; }
-.top-right { top: 25px; right: 20px; }
+.top-left { top: 30px; left: 20px; }
+.top-right { top: 30px; right: 20px; }
 .bottom-left { bottom: 35px; left: 20px; }
 .bottom-right { bottom: 35px; right: 20px; }
 
@@ -269,7 +269,7 @@ body {
 /* 음악 버튼 */
 .music-btn {
     position: fixed;
-    top: 10px;
+    top: 0px;
     right: calc(50% - 205px);
     z-index: 2000;
     cursor: pointer;
