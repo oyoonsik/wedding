@@ -116,13 +116,15 @@ body {
     position: relative;
     width: 100%;
     
-    /* [수정 포인트] 100vh(전체화면) -> 80vh(적당한 높이)로 변경 */
+    /* 1. 높이 고정: dvh 단위를 써야 주소창이 움직여도 흔들리지 않습니다 */
     height: 80vh; 
-    min-height: 600px; /* 너무 작아지지 않게 최소 높이 안전장치 */
+    height: 80dvh; /* 모바일 전용 단위 (필수) */
     
     padding: 0;
     overflow: hidden;
-    background-color: #000;
+    
+    /* 2. 배경색 변경: 로딩 중에 검은색이 보이지 않게 흰색으로 변경 */
+    background-color: #fff;
 }
 
 /* 배경 이미지 설정 (그대로 유지) */
@@ -139,6 +141,7 @@ body {
     /* 사진 위치 조절: 얼굴이 잘리면 center top 등으로 변경해보세요 */
     object-position: center; 
     filter: brightness(0.85); 
+    display: block;
 }
 
 /* 모서리 영문 텍스트 (위치 미세 조정) */
