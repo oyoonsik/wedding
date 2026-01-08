@@ -379,8 +379,8 @@ window.onload = () => {
             ease: "power3.out"
         })
         .to("#intro", {
-            delay: 1,
-            duration: 1.5,
+            delay: 0.5,
+            duration: 0.8,
             yPercent: -100, // 인트로가 위로 슬라이드
             ease: "power4.inOut"
         })
@@ -388,14 +388,14 @@ window.onload = () => {
         .from("#wrap", {
             opacity: 0,
             y: 50,
-            duration: 1.2,
+            duration: 0.8,
             clearProps: "all" 
         }, "-=0.8")
         // [Step 3] 메인 내부 요소들 순차적 등장
-        .to(".wedding_date", { opacity: 1, y: -10, duration: 1 }, "-=0.4")
-        .to(".wedding_names", { opacity: 1, y: -10, duration: 1 }, "-=0.7")
-        .to(".img_frame", { opacity: 1, y: -10, duration: 1.2 }, "-=0.7")
-        .to(".location", { opacity: 1, duration: 1 }, "-=0.6");
+        .to(".wedding_date", { opacity: 1, y: -10, duration: 0.6 }, "-=0.4")
+        .to(".wedding_names", { opacity: 1, y: -10, duration: 0.6 }, "-=0.7")
+        .to(".img_frame", { opacity: 1, y: -10, duration: 0.8 }, "-=0.7")
+        .to(".location", { opacity: 1, duration: 0.6 }, "-=0.6");
 
     // 2. 스크롤 트리거 (인사말, 갤러리 등 하단 섹션)
     // 인트로 이후에 나오는 요소들만 대상으로 합니다.
@@ -410,8 +410,8 @@ window.onload = () => {
                 // once: true, // 한 번만 실행되게 하려면 추가
             },
             opacity: 1,
-            y: -20,
-            duration: 1.5,
+            y: 0,
+            duration: 0.8,
             ease: "power2.out"
         });
     });
