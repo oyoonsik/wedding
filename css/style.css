@@ -1,179 +1,588 @@
- :root {
-            --bg-color: #ffffff;
-            --text-main: #222;
-            --text-sub: #888;
-            --point: #bfa67a;
-            --section-space: 100px;
-        }
+:root {
+    --bg-color: #ffffff;
+    --text-main: #222;
+    --text-sub: #888;
+    --point: #bfa67a; /* 포인트 컬러 */
+    --section-space: 80px;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: #f8f8f8; 
-            font-family: 'Pretendard', sans-serif; 
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        #wrap {
-            max-width: 450px;
-            margin: 0 auto;
-            background-color: var(--bg-color);
-            min-height: 100vh;
-            padding-bottom: 100px;
-        }
+body { 
+    background-color: #f8f8f8; 
+    font-family: 'Pretendard', sans-serif; 
+    color: var(--text-main);
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}
 
-        /* 공통 애니메이션 클래스 */
-        .reveal { opacity: 0; }
+#wrap {
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
 
-        /* 메인 비주얼 */
-        .main_visual {
-            padding: 80px 30px;
-            text-align: center;
-        }
-        .wedding_date {
-            font-size: 14px;
-            letter-spacing: 4px;
-            color: var(--text-sub);
-            margin-bottom: 15px;
-        }
-        .wedding_names {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 25px;
-            font-weight: 300;
-            margin-bottom: 20px;
-            margin-top: 30px;
-        }
-        .img_frame {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            background-color: #eee; /* 이미지 없을 때 대비 */
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
-        .img_frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* 공통 애니메이션 클래스 */
+.reveal { opacity: 0; }
 
-        /* 섹션 공통 스타일 */
-        section {
-            padding: var(--section-space) 40px;
-            text-align: center;
-        }
+/* =========================================
+   [1] 메인 비주얼 (풀스크린 포스터 스타일)
+   ========================================= */
 
-        h2 {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 18px;
-            letter-spacing: 2px;
-            color: var(--point);
-            margin-bottom: 30px;
-        }
+.main_visual {
+    position: relative;
+    width: 100%;
+    height: 80vh; 
+    min-height: 600px; /* 너무 작아지지 않게 최소 높이 안전장치 */ 
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
 
-        .greeting_text {
-            line-height: 2.2;
-            font-size: 15px;
-            font-weight: 300;
-        }
+/* 배경 이미지 설정 */
+.img_frame {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+}
 
-        /* 가상의 갤러리 섹션 */
-        .gallery { background-color: #fafafa; }
-        .box_dummy {
-            width: 100%;
-            height: 250px;
-            background-color: #eee;
-            margin-bottom: 10px;
-        }
+.img_frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    /* 글씨가 잘 보이게 사진을 살짝 어둡게 (밝은 사진일 경우 필수) */
+    filter: brightness(0.85); 
+    /* 사진 위치 조절: 얼굴이 잘리면 center top 등으로 변경해보세요 */
+    object-position: center;
+}
 
-         /* 인트로 */
-        .intro-section {
-            position: fixed;
-            top: 0; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 100%; 
-            height: 100vh;
-            height: 100dvh; 
-            max-width: 700px; 
-            background: #fff;
-            z-index: 1000;
-            overflow: hidden;
-        }
+/* 모서리 영문 텍스트 (SIMPLY, MEANT...) */
+.corner-text {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 12px; /* 글자 크기 살짝 줄임 */
+    letter-spacing: 2px;
+    font-weight: 500;
+    z-index: 10;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
 
-        .intro-img-frame {
-            width: 100%; height: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .intro-img-frame img {
-            position: absolute;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            /* 글자 선명도 유지 */
-            image-rendering: -webkit-optimize-contrast;
-        }
-
-        .intro-text {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: #fff;
-            font-family: 'Noto Serif KR', serif;
-        }
-
-        .main-title {
-            font-size: 60px;
-            line-height: 1.1;
-            letter-spacing: 2px;
-        }
-
-        .sub-text-wrap {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 40px;
-            font-size: 12px;
-            letter-spacing: 3px;
-        }
+.top-left { top: 30px; left: 25px; }
+.top-right { top: 30px; right: 25px; }
+.bottom-left { bottom: 30px; left: 25px; }
+.bottom-right { bottom: 30px; right: 25px; }
 
 
-        .music-btn {
-        position: fixed;
-        top: 20px;
-        right: calc(50% - 205px); /* 화면 중앙 450px 기준 우측 상단 */
-        z-index: 2000;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px;
-    }
+/* 중앙 날짜 숫자 디자인 */
+.poster-date {
+    position: absolute;
+    top: 52%; left: 50%; /* 시선 중앙에 맞춤 */
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 숫자끼리 겹치는 느낌을 위한 줄 간격 */
+    line-height: 0.8; 
+}
 
-    /* 음악 재생 중일 때 움직이는 막대 애니메이션 (선택 사항) */
-    .music-bar-wrap {
-        display: flex;
-        align-items: flex-end;
-        gap: 2px;
-        height: 12px;
-    }
-    .bar {
-        width: 2px;
-        background: var(--point);
-        height: 100%;
-        animation: bounce 0.8s infinite alternate;
-        animation-play-state: paused; /* 기본은 멈춤 */
-    }
-    .music-btn.playing .bar { animation-play-state: running; }
+.date-num {
+   /* 기존 Noto Serif KR 대신 이거 사용 */
+    font-family: 'Bodoni Moda', serif; 
+    
+    font-size: 90px; /* 크기 유지 */
+    color: #fff;
+    
+    /* 두께를 700~800 정도로 두껍게 주면 더 임팩트 있습니다 */
+    font-weight: 700; 
+    
+    /* 숫자를 살짝 기울이면(italic) 훨씬 감각적입니다 (선택사항) */
+    font-style: italic; 
+    
+    letter-spacing: -5px; /* 숫자끼리 딱 붙게 */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin: -8px 0; /* 줄 간격 밀착 */
+}
 
-    @keyframes bounce {
-        from { height: 3px; }
-        to { height: 12px; }
-    }
+/* =========================================
+   [1] 메인 비주얼 (높이 수정됨)
+   ========================================= */
+.main_visual {
+    position: relative;
+    width: 100%;
+    
+    /* [수정 포인트] 100vh(전체화면) -> 80vh(적당한 높이)로 변경 */
+    height: 80vh; 
+    min-height: 600px; /* 너무 작아지지 않게 최소 높이 안전장치 */
+    
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
 
-    /* 모바일 대응: 화면이 작아지면 여백 조절 */
-    @media (max-width: 450px) {
-        .music-btn { right: 20px; }
-    }
+/* 배경 이미지 설정 (그대로 유지) */
+.img_frame {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+}
+
+.img_frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    /* 사진 위치 조절: 얼굴이 잘리면 center top 등으로 변경해보세요 */
+    object-position: center; 
+    filter: brightness(0.85); 
+}
+
+/* 모서리 영문 텍스트 (위치 미세 조정) */
+.corner-text {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 12px; /* 글자 크기 살짝 줄임 */
+    letter-spacing: 2px;
+    font-weight: 500;
+    z-index: 10;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+.top-left { top: 25px; left: 20px; }
+.top-right { top: 25px; right: 20px; }
+.bottom-left { bottom: 35px; left: 20px; }
+.bottom-right { bottom: 35px; right: 20px; }
+
+/* 중앙 날짜 타이포그래피 */
+.poster-date {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 0.9; 
+}
+
+/* 큰 숫자 (월/일) */
+.date-num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 100px; /* 주인공은 더 크게 */
+    color: #fff;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 0.85;
+    margin-bottom: 5px; /* 년도와의 간격 */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* 작은 년도 (2026) */
+.year-num {
+    font-family: 'Bodoni Moda', serif; /* 같은 폰트 */
+    font-size: 24px; /* 작게 */
+    letter-spacing: 10px; /* 자간을 넓게 벌려서 세련되게 */
+    color: #fff;
+    font-weight: 400;
+    margin-top: 15px; /* 위 숫자들과 거리 두기 */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 380px) {
+    .date-num { font-size: 75px; } 
+    .corner-text { font-size: 10px; }
+    .main_visual { height: 75vh; } /* 작은 폰에서는 조금 더 줄임 */
+}
+
+/* =========================================
+   [2] 인트로 (첫 로딩 화면)
+   ========================================= */
+.intro-section {
+    position: fixed;
+    top: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 100%; 
+    height: 100vh;
+    height: 100dvh; 
+    max-width: 450px; /* #wrap과 동일하게 */
+    background: #fff;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.intro-img-frame {
+    width: 100%; height: 100%;
+    position: relative;
+}
+
+.intro-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.intro-text {
+    position: absolute;
+    top: 50%; left: 0; width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    font-family: 'Noto Serif KR', serif;
+    z-index: 2;
+}
+
+.main-title {
+    font-size: 50px;
+    line-height: 1.1;
+    letter-spacing: 2px;
+}
+
+.sub-text-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 40px auto 0;
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0.8;
+}
+
+/* 음악 버튼 */
+.music-btn {
+    position: fixed;
+    top: 10px;
+    right: calc(50% - 205px);
+    z-index: 2000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px;
+    color: #4b4848; /* 메인이 어두워졌으므로 버튼도 흰색 추천 */
+}
+
+.music-bar-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+}
+.bar {
+    width: 2px;
+    background: #906948;
+    height: 100%;
+    animation: bounce 0.8s infinite alternate;
+    animation-play-state: paused;
+}
+.music-btn.playing .bar { animation-play-state: running; }
+@keyframes bounce { from { height: 3px; } to { height: 12px; } }
+@media (max-width: 450px) { .music-btn { right: 15px; } }
+
+
+/* =========================================
+   [3] 인사말 섹션 (요청하신 스크린샷 디자인)
+   ========================================= */
+.greeting {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.title-area { margin-bottom: 40px; }
+
+.eng-title {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #ccaea3; 
+    margin-bottom: 10px;
+    font-family: 'Noto Serif KR', serif;
+    text-transform: uppercase;
+}
+
+.kor-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 19px;
+    color: #ccaea3;
+    font-weight: 500;
+}
+
+.greeting_text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    line-height: 2.4;
+    color: #555;
+    word-break: keep-all;
+}
+
+
+/* =========================================
+   [4] 가족 연락처 섹션 (버튼형)
+   ========================================= */
+.family-section {
+    padding: 0 20px 60px; /* 위쪽 여백 줄임 (인사말과 자연스럽게) */
+    background: #fff;
+}
+
+/* 중간 사진 */
+.family-photo {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 40px;
+    padding: 0 10px;
+}
+.family-photo img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+}
+
+/* 가족 정보 라인 */
+.family-row { 
+    max-width: 380px; 
+    margin: 0 auto 10px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 5px; 
+    border-bottom: 1px solid #f9f9f9; 
+}
+
+.family-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    text-align: left;
+    color: #333;
+}
+.p-names { font-weight: 500; }
+.p-rel { font-size: 13px; color: #999; margin: 0 6px; }
+.m-name { font-weight: 500; color: #222; }
+
+/* 연락하기 알약 버튼 */
+.round-contact-btn { 
+    cursor: pointer; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 20px; 
+    padding: 6px 14px; 
+    font-size: 12px; 
+    background: #fff; 
+    color: #666;
+    transition: 0.2s;
+}
+.round-contact-btn:hover {
+    border-color: var(--point);
+    color: var(--point);
+}
+
+
+/* =========================================
+   [5] 연락처 팝업 (바텀 시트)
+   ========================================= */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 9999;
+    display: none; align-items: flex-end;
+}
+.modal-content {
+    width: 100%; max-width: 450px; margin: 0 auto;
+    background: #fff; border-radius: 20px 20px 0 0;
+    padding: 25px 20px; 
+    transform: translateY(100%); transition: transform 0.3s ease-out;
+}
+.modal-overlay.active { display: flex; }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+
+.modal-header { 
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 15px; border-bottom: 1px solid #eee; 
+    font-weight: bold; font-family: 'Noto Serif KR', serif; color: #ccaea3;
+}
+.close-x { border: none; background: none; font-size: 20px; cursor: pointer; color: #999; }
+
+.contact-item-box {
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 18px 0; border-bottom: 1px solid #f9f9f9;
+}
+.contact-info-text { display: flex; flex-direction: column; gap: 4px; }
+.info-rel { font-size: 12px; color: #999; }
+.info-name { font-size: 16px; font-weight: 500; }
+
+.contact-actions { display: flex; gap: 10px; }
+.action-link { 
+    text-decoration: none; font-size: 16px; 
+    width: 36px; height: 36px; 
+    border-radius: 50%; border: 1px solid #eee; 
+    display: flex; align-items: center; justify-content: center; 
+    color: #666; transition: 0.2s;
+}
+.action-link:hover { border-color: var(--point); color: var(--point); }
+
+
+/* =========================================
+   [인터뷰 섹션 스타일]
+   ========================================= */
+.interview-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.interview-header { margin-bottom: 30px; }
+
+.kor-subtitle {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    color: #ccaea3; /* 핑크 브라운 포인트 컬러 */
+    margin: 10px 0 20px;
+    font-weight: 500;
+}
+
+.desc-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* 사진 2분할 레이아웃 */
+.interview-photos {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* 사진 사이 간격 */
+    margin-bottom: 30px;
+}
+
+.photo-box {
+    width: 45%; /* 화면의 절반 조금 안 되게 */
+    aspect-ratio: 1 / 1.2; /* 세로가 살짝 긴 직사각형 비율 */
+    border-radius: 15px; /* 모서리 둥글게 */
+    overflow: hidden;
+    background: #eee;
+}
+
+.photo-box img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+/* 인터뷰 버튼 디자인 */
+.interview-btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 15px;
+    border: 1px solid #f0dcd6; /* 연한 핑크 테두리 */
+    background: #fff;
+    border-radius: 50px; /* 알약 모양 */
+    color: #8c7b75;
+    font-size: 14px;
+    font-family: 'Noto Serif KR', serif;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
+}
+
+.interview-btn:hover {
+    background-color: #fcf6f4;
+    border-color: #ccaea3;
+}
+
+.btn-icon { font-size: 16px; color: #ccaea3; }
+
+
+/* =========================================
+   [인터뷰 팝업 내용 스타일]
+   ========================================= */
+/* 기존 팝업(modal-content) 스타일을 상속받되 높이 조절 */
+.interview-content {
+    height: 80vh; /* 화면의 80% 높이까지 올라오게 */
+    overflow-y: auto; /* 내용이 길면 스크롤 */
+}
+
+.modal-title { 
+    color: #ccaea3; 
+    font-family: 'Noto Serif KR', serif; 
+    letter-spacing: 2px;
+}
+
+.interview-body {
+    padding: 10px 5px;
+    text-align: left;
+}
+
+.qna-box { 
+    margin-bottom: 40px; 
+    border-bottom: 1px dashed #eee; /* 질문 사이 구분선 */
+    padding-bottom: 30px;
+}
+.qna-box:last-child { border-bottom: none; }
+
+.q {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ccaea3; /* 포인트 컬러 */
+    margin-bottom: 15px;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.answer-block {
+    margin-bottom: 20px;
+}
+
+.speaker {
+    font-weight: bold;
+    color: #222;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.a {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8; /* 줄 간격 넉넉하게 */
+    background-color: #f9f9f9; /* 답변 배경 살짝 깔아줌 */
+    padding: 15px;
+    border-radius: 8px;
+    word-break: keep-all;
+}
+
+.name { font-weight: bold; color: #333; margin-right: 5px; }
+
+
+/* 꽃가루 효과 캔버스 스타일 */
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 중요: z-index 순서
+       0 (사진) < 5 (꽃가루) < 10 (글자)
+       이렇게 설정해야 꽃가루가 글자 뒤로 내립니다.
+    */
+    z-index: 5; 
+    pointer-events: none; /* 마우스 클릭이 통과되도록 설정 */
+}
+
+
+/* =========================================
+   [6] 갤러리 섹션
+   ========================================= */
+.gallery { background-color: #fafafa; padding-top: 80px; }
+.box_dummy {
+    width: 100%; height: 250px;
+    background-color: #eee; margin-bottom: 10px;
+}
