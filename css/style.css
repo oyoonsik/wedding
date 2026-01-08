@@ -302,7 +302,7 @@ body {
    [3] 인사말 섹션 (요청하신 스크린샷 디자인)
    ========================================= */
 .greeting {
-    padding: 80px 20px;
+    padding: 60px 20px;
     text-align: center;
     background-color: #fff;
 }
@@ -590,10 +590,207 @@ body {
 
 
 /* =========================================
-   [6] 갤러리 섹션
+   [갤러리 섹션 스타일]
    ========================================= */
-.gallery { background-color: #fafafa; padding-top: 80px; }
-.box_dummy {
-    width: 100%; height: 250px;
-    background-color: #eee; margin-bottom: 10px;
+.gallery-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.gallery-header { margin-bottom: 30px; }
+
+/* 갤러리 그리드 레이아웃 */
+.gallery-grid {
+    display: grid;
+    /* 2열 배치 */
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; /* 사진 사이 간격 */
+    
+    /* [초기 상태] 높이를 제한하고 넘치는 건 숨김 */
+    max-height: 500px; 
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.5s ease-in-out; /* 부드럽게 열리기 */
+}
+
+/* 그리드 아이템 */
+.gallery-item {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+/* [중요] 세로로 긴 사진 (2칸 차지) */
+.gallery-item.tall {
+    grid-row: span 2; /* 세로로 2칸 병합 */
+}
+
+/* 더보기 버튼 영역 */
+.more-btn-wrap {
+    position: relative;
+    margin-top: -80px; /* 사진 위로 살짝 겹치게 올려서 그라데이션 효과 */
+    padding-top: 80px;
+    padding-bottom: 20px;
+    /* 흰색 그라데이션으로 자연스럽게 가려짐 */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%);
+    z-index: 5;
+}
+
+.gallery-more-btn {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 10px 30px;
+    border-radius: 30px;
+    color: #555;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.arrow-down { font-size: 10px; margin-top: 2px; }
+
+/* 갤러리가 펼쳐졌을 때 스타일 */
+.gallery-grid.expanded {
+    max-height: 2000px; /* 충분히 큰 값으로 변경 */
+}
+.more-btn-wrap.hidden {
+    display: none; /* 버튼 숨김 */
+}
+
+/* (선택) 사진 확대 모달 스타일 */
+.photo-modal-content {
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+}
+.photo-modal-content img {
+    max-width: 95%; max-height: 90%;
+    border-radius: 5px;
+}
+.close-x-white {
+    position: absolute; top: 20px; right: 20px;
+    background: none; border: none; color: #fff; font-size: 30px; cursor: pointer;
+}
+
+/* =========================================
+   [달력 & 카운트다운 스타일]
+   ========================================= */
+.calendar-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.calendar-header {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.cal-year { display: block; font-size: 22px; letter-spacing: 2px; margin-bottom: 5px; }
+.cal-time { display: block; font-size: 14px; color: #888; }
+
+/* 달력 테이블 */
+.calendar-wrap {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto 50px;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.calendar-table th {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    padding-bottom: 15px;
+}
+
+.calendar-table td {
+    height: 45px; /* 칸 높이 */
+    font-size: 14px;
+    color: #444;
+    vertical-align: middle;
+}
+
+/* 일요일/공휴일 빨간색 */
+.sun, .holliday { color: #e66a6a !important; }
+
+/* 디데이 동그라미 (결혼식 날) */
+.d-day span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px; height: 30px;
+    background-color: #8c7b75; /* 포인트 컬러 (브라운 핑크) */
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* 카운트다운 타이머 */
+.countdown-area {
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+}
+
+.timer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.time-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+}
+
+.time-item span:first-child {
+    font-size: 24px;
+    font-family: 'Bodoni Moda', serif; /* 숫자 폰트 */
+    font-weight: 600;
+}
+
+.label {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.colon {
+    font-size: 20px;
+    margin-bottom: 15px; /* 숫자와 높이 맞춤 */
+    color: #ccc;
+}
+
+.d-day-text {
+    font-size: 14px;
+    color: #666;
+}
+.accent-text {
+    color: #e66a6a;
+    font-weight: bold;
 }
