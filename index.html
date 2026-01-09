@@ -20,6 +20,27 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw"></script>
+    <script>
+    window.addEventListener('load', function () {
+        if (!window.naver || !naver.maps) {
+            console.error('네이버 지도 API 로드 실패');
+            return;
+        }
+
+        const map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.58055, 127.0479),
+            zoom: 16
+        });
+
+        new naver.maps.Marker({
+            position: new naver.maps.LatLng(37.58055, 127.0479),
+            map: map
+        });
+    });
+    </script>
+
 </head>
 <body>
 
@@ -525,27 +546,6 @@ function viewPhoto(img) {
 function closePhoto() {
     document.getElementById('photoModal').classList.remove('active');
 }
-</script>
-
-<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nzlnpk67vy"></script>
-
-<script>
-window.addEventListener('load', function () {
-    if (!window.naver || !naver.maps) {
-        console.error('네이버 지도 API 로드 실패');
-        return;
-    }
-
-    const map = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(37.58055, 127.0479),
-        zoom: 16
-    });
-
-    new naver.maps.Marker({
-        position: new naver.maps.LatLng(37.58055, 127.0479),
-        map: map
-    });
-});
 </script>
 
 
