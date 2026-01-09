@@ -848,21 +848,111 @@ body {
 .navi-desc { font-size: 12px; color: #999; margin-bottom: 15px; }
 
 .navi-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+    display: flex;
+    justify-content: space-between; /* 버튼 사이 간격 균등 배치 */
+    gap: 10px; /* 버튼 사이 틈 */
+    margin-top: 20px;
 }
 
 .navi-btn {
+    flex: 1; /* 3개 버튼 크기 똑같이 */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 12px 0;
-    border: 1px solid #eee;
-    border-radius: 8px;
+    background-color: #fff; /* 흰색 배경 */
+    border: 1px solid #e1e1e1; /* 연한 회색 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 12px 0; /* 위아래 여백 */
     text-decoration: none;
+    color: #333; /* 글씨 색상 */
     font-size: 13px;
-    color: #444;
-    background: #fdfdfd;
+    font-weight: 500;
+    transition: all 0.2s; /* 부드러운 효과 */
+}
+
+/* 마우스 올렸을 때 효과 */
+.navi-btn:hover {
+    background-color: #f8f8f8;
+    border-color: #ccc;
+}
+
+/* 아이콘 이미지 크기 조절 */
+.nav-icon-img {
+    width: 20px;  /* 아이콘 너비 */
+    height: 20px; /* 아이콘 높이 */
+    margin-right: 6px; /* 글자와 아이콘 사이 간격 */
+    object-fit: contain;
+}
+
+/* --- 교통편 안내 섹션 스타일 --- */
+.transport-info {
+    margin-top: 40px;
+    padding: 30px 20px;
+    background-color: #f9f9f9; /* 연한 회색 배경 (이미지와 비슷하게) */
+    border-radius: 12px;
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.trans-row {
+    margin-bottom: 20px;
+}
+
+.trans-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.trans-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.trans-list li {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.trans-text {
+    font-size: 15px;
+    color: #555;
+}
+
+.trans-desc {
+    font-size: 13px;
+    color: #888;
+    margin-top: 8px;
+    padding-left: 2px;
+}
+
+/* 점선 구분선 */
+.trans-divider {
+    border-top: 1px dashed #ddd;
+    margin: 20px 0;
+}
+
+/* 색상 도트(●) 스타일 */
+.dot {
+    font-size: 12px;
+    margin-right: 8px;
+    position: relative;
+    top: -1px;
+}
+
+/* 노선별 색상 */
+/* --- L65 교통편 색상 추가 --- */
+.line-1 { color: #0052A4; }   /* 1호선 남색 */
+.line-kj { color: #77C4A3; }  /* 경의중앙/경춘선 민트색 */
+.bus-red { color: #e60012; }  /* 직행/광역버스 빨강 */
+.trans-sub-title {            /* 버스 정류장 이름 강조 */
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
 }
