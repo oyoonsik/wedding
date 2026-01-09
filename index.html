@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="윤식♥혜미 결혼합니다">
-    <meta property="og:description" content="10월 10일. L65호텔웨딩컨벤션에서 저희 두 사람의 결혼식이 있습니다. 소중한 분들을 초대합니다.">
+    <meta property="og:description" content="저희... 진짜 갑니다! 10월 10일. L65호텔웨딩컨벤션에서 저희 두 사람의 결혼식이 있습니다.">
     <meta property="og:image" content="img/main_photo.jpg"> </head>
     <title>윤식 ♥ 혜미 결혼합니다.</title>
     
@@ -13,13 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' d='M50 20c5-15 25-15 25 0 0 10-15 20-25 30C40 40 25 30 25 20c0-15 20-15 25 0z'/%3E%3Cpath fill='%23ffffff' d='M80 50c15 5 15 25 0 25-10 0-20-15-30-25 10-10 20-25 30-25c15 0 15 20 0 25z'/%3E%3Cpath fill='%23ffffff' d='M50 80c-5 15-25 15-25 0 0-10 15-20 25-30 10 10 25 20 25 30 0 15-20 15-25 0z'/%3E%3Cpath fill='%23ffffff' d='M20 50c-15-5-15-25 0-25 10 0 20 15 30 25-10 10-20 25-30 25-15 0-15-20 0-25z'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23ffdde1'/%3E%3C/svg%3E">
     <link href="./css/style.css" rel="stylesheet">
-
-    <script src="./js/confetti.js" charset="utf-8"></script>
-    <script src="./js/startCountdown.js" charset="utf-8"></script>
-    
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw"></script>
     <script>
@@ -89,23 +82,22 @@
     </div>
     </section>
 
-    <section class="greeting reveal">
+   <section class="greeting reveal">
         <div class="title-area">
-            <span class="eng-title">INVITATION</span>
-            <h2 class="kor-title">소중한 분들을 초대합니다</h2>
+            <span class="eng-title">SOLD OUT</span>
+            <h2 class="kor-title">저희, 진짜 갑니다!</h2>
         </div>
         
         <div class="greeting_text">
-            저희 두 사람의 작은 만남이<br>
-            사랑의 결실을 이루어<br>
-            소중한 결혼식을 올리게 되었습니다.<br><br>
+            오윤식과 박혜미가 만나<br>
+            평생 서로의 족쇄... 아니,<br>
+            반려자가 되기로 약속했습니다.<br><br>
 
-            평생 서로 귀하게 여기며<br>
-            첫 마음 그대로 존중하고 배려하며 살겠습니다.<br><br>
+            반품과 환불은 불가하오니<br>
+            오셔서 증인이 되어주세요.<br><br>
 
-            오로지 믿음과 사랑을 약속하는 날<br>
-            오셔서 축복해 주시면 더없는 기쁨으로<br>
-            간직하겠습니다.
+            재밌게 잘 살겠습니다.<br>
+            오셔서 맛있는 밥 드시고 가세요!
         </div>
     </section>
 
@@ -344,9 +336,9 @@
 
    <div id="map" style="width:100%; height:300px; margin: 30px auto;"></div>
 
-    <a href="./img/map-inner.jpg" target="_blank" class="static-map-btn">
+    <button class="static-map-btn" onclick="openMapModal()">
         <span class="map-icon">🗺</span> 약도 이미지 보기
-    </a>
+    </button>
 
     <div class="navi-section">
         <h5 class="navi-title">내비게이션</h5>
@@ -434,13 +426,121 @@
     </div>
 </section>
 
+<section class="middle-visual reveal">
+    <div class="img-box">
+        <img src="./img/td00860009489.jpg" alt="아름다운 우리" class="full-img">
+    </div>
+</section>
 
+<section class="guestbook reveal">
+    <div class="title-area">
+        <span class="eng-title">GUESTBOOK</span>
+        <h2 class="kor-title">방명록</h2>
+    </div>
+
+    <div class="guest-slider-wrap">
+        <div class="guest-slider">
+            
+            <div class="guest-card">
+                <span class="card-flower">🌸</span>
+                <p class="card-msg">
+                    대리님~~💖 결혼 진심으로 축하드려요🎉<br>
+                    알콩달콩 행복한 가정 잘 꾸려나가시길 응원할게요!!<br>
+                    웨딩사진 너무너무 이뻐요👏👏
+                </p>
+                <span class="card-name">- 유진 -</span>
+            </div>
+
+            <div class="guest-card">
+                <span class="card-flower">🌸</span>
+                <p class="card-msg">
+                    사랑하는 내친구 윤식아! 정말 온맘다해 축하해♡<br>
+                    반짝반짝 향기로운 꽃같은 날들만 가득하길 기도할게~<br>
+                    우리 혜미씨 잘 부탁드립니다🧡💛💚
+                </p>
+                <span class="card-name">- 승희🧡 -</span>
+            </div>
+
+            <div class="guest-card">
+                <span class="card-flower">💐</span>
+                <p class="card-msg">
+                    두 분의 새로운 시작을 진심으로 축하드립니다.<br>
+                    언제나 웃음 가득하고 행복한 일들만 가득하시길 바랍니다.<br>
+                    결혼 축하해요! 🤵👰
+                </p>
+                <span class="card-name">- 김철수 -</span>
+            </div>
+            
+            </div>
+    </div>
+
+    <div class="guest-btn-area">
+        <button class="guest-btn" onclick="openGuestbook()">작성하기 ✏️</button>
+        <button class="guest-btn sub" onclick="openAllGuestbook()">전체보기</button>
+    </div>
+</section>
+
+<!--방명록 부분-->
+<div id="guestbookModal" class="modal-overlay">
+    <div class="guest-write-box">
+        <div class="guest-header">
+            <h3>방명록 (축하 글)작성</h3>
+            <button class="close-btn-black" onclick="closeGuestbook()">✕</button>
+        </div>
+
+        <div class="guest-form">
+            <div class="input-group">
+                <label>이름 <span class="required">*</span></label>
+                <input type="text" id="gName" placeholder="이름을 입력해 주세요">
+            </div>
+
+            <div class="input-group">
+                <label>비밀번호 <span class="required">*</span></label>
+                <input type="password" id="gPw" placeholder="비밀번호를 입력해 주세요">
+            </div>
+
+            <div class="input-group">
+                <label>내용 <span class="required">*</span></label>
+                <textarea id="gMsg" placeholder="내용을 작성해 주세요 (최대 500자)"></textarea>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitGuestbook()">
+            신랑 & 신부에게 <b>축하 글 전달하기</b>
+        </button>
+    </div>
+</div>
+
+<div id="allGuestbookModal" class="modal-overlay">
+    <div class="guest-write-box"> <div class="guest-header">
+            <h3>방명록 전체보기</h3>
+            <button class="close-btn-black" onclick="closeAllGuestbook()">✕</button>
+        </div>
+
+        <div id="guestbookListArea" class="guest-list-wrap">
+            <div class="loading-msg">데이터를 불러오는 중입니다... ⏳</div>
+        </div>
+
+    </div>
+</div>
+
+<!--포토모델 팝업-->
 <div id="photoModal" class="modal-overlay" onclick="closePhoto()">
     <div class="photo-modal-content">
         <img id="modalImg" src="">
         <button class="close-x-white" onclick="closePhoto()">✕</button>
     </div>
 </div>
+
+<!--지도 팝업-->
+<div id="mapModal" class="modal-overlay" onclick="closeMapModal()">
+    <div class="photo-modal-content" onclick="event.stopPropagation()">
+        <img src="./img/map-inner.jpg" alt="약도 상세" style="width: 100%; border-radius: 8px;">
+        
+        <button class="close-x-white" onclick="closeMapModal()">✕</button>
+    </div>
+</div>
+
 
 <footer style="text-align: center; padding: 40px 20px; color: #ccc; font-size: 11px; line-height: 1.5;">
     <p>Copyright 2026. YOONSIK & HYEMI. All rights reserved.</p>
@@ -451,171 +551,13 @@
 </footer>
 
 </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-window.onload = () => {
-    // 1. 전체 타임라인 생성 (인트로 -> 메인 비주얼 연결)
-    const masterTl = gsap.timeline();
-
-    // [Step 1] 인트로 애니메이션
-    masterTl
-        .from(".intro-text", {
-            opacity: 0,
-            y: 30,
-            duration: 1.5,
-            ease: "power3.out"
-        })
-        .to("#intro", {
-            delay: 0.5,
-            duration: 0.8,
-            yPercent: -100, // 인트로가 위로 슬라이드
-            ease: "power4.inOut"
-        })
-        // [Step 2] 메인 비주얼 (#wrap) 등장 (인트로가 거의 끝날 때쯤 시작)
-        .from("#wrap", {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            clearProps: "all" 
-        }, "-=0.8")
-        // [Step 3] 메인 내부 요소들 순차적 등장
-        .to(".wedding_date", { opacity: 1, y: -10, duration: 0.6 }, "-=0.4")
-        .to(".wedding_names", { opacity: 1, y: -10, duration: 0.6 }, "-=0.7")
-        .to(".img_frame", { opacity: 1, y: -10, duration: 0.8 }, "-=0.7")
-        .to(".location", { opacity: 1, duration: 0.6 }, "-=0.6");
-
-    // 2. 스크롤 트리거 (인사말, 갤러리 등 하단 섹션)
-    // 인트로 이후에 나오는 요소들만 대상으로 합니다.
-    const revealEls = document.querySelectorAll('.reveal:not(.main_visual .reveal)');
-    
-    revealEls.forEach((el) => {
-        gsap.to(el, {
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%",
-                toggleActions: "play none none none"
-                // once: true, // 한 번만 실행되게 하려면 추가
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out"
-        });
-    });
-
-    // (옵션) 인트로 진행 중에는 스크롤을 막고 싶다면?
-    // masterTl이 끝나기 전까지 body의 overflow를 숨겼다가 완료 후 푸는 로직을 추가할 수 있습니다.
-};
-</script>
-
-<script>
-    const bgm = document.getElementById('bgm');
-const musicBtn = document.getElementById('music-control');
-
-musicBtn.addEventListener('click', () => {
-    if (bgm.paused) {
-        bgm.play();
-        musicBtn.classList.add('playing');
-    } else {
-        bgm.pause();
-        musicBtn.classList.remove('playing');
-    }
-});
-
-// 자동 재생 시도 (브라우저 차단 대비)
-window.addEventListener('click', () => {
-    // 사용자가 화면 어디든 처음 클릭할 때 음악 시작 (원치 않으면 삭제)
-    if (bgm.paused && !musicBtn.classList.contains('manually-paused')) {
-        bgm.play();
-        musicBtn.classList.add('playing');
-    }
-}, { once: true });
-</script>
-
-<script>
-    const contactData = {
-    groom: [
-        { rel: "신랑", name: "오윤식", tel: "010-9961--6199" },
-        { rel: "신랑 아버지", name: "오영철", tel: "010-3782-3442" },
-        { rel: "신랑 어머니", name: "이금하", tel: "010-5000-1320" }
-    ],
-    bride: [
-        { rel: "신부", name: "박혜미", tel: "010-9159-3303" },
-        { rel: "신부 아버지", name: "박호철", tel: "010-1111-1111" },
-        { rel: "신부 어머니", name: "장환순", tel: "010-1111-1111" }
-    ]
-};
-
-function openContact(type) {
-    const list = document.getElementById('contactList');
-    list.innerHTML = ''; // 초기화
-    document.getElementById('modalTitle').innerText = type === 'groom' ? '신랑측 연락처' : '신부측 연락처';
-
-    contactData[type].forEach(person => {
-        list.innerHTML += `
-            <div class="contact-item-box">
-                <div class="contact-info-text">
-                    <span class="info-rel">${person.rel}</span>
-                    <span class="info-name">${person.name}</span>
-                </div>
-                <div class="contact-actions">
-                    <a href="tel:${person.tel}" class="action-link">📞</a>
-                    <a href="sms:${person.tel}" class="action-link">✉️</a>
-                </div>
-            </div>
-        `;
-    });
-
-    const modal = document.getElementById('contactModal');
-    modal.classList.add('active');
-}
-
-function closeContact() {
-    document.getElementById('contactModal').classList.remove('active');
-}
-</script>
-
-
-<script>
-
- // 인터뷰 팝업 열기
-function openInterview() {
-    document.getElementById('interviewModal').classList.add('active');
-}
-
-// 인터뷰 팝업 닫기
-function closeInterview() {
-    document.getElementById('interviewModal').classList.remove('active');
-}
-</script>
-
-<script>
-    // 갤러리 더보기 기능
-function expandGallery() {
-    const grid = document.getElementById('galleryGrid');
-    const btnWrap = document.getElementById('moreBtnWrap');
-    
-    // 높이 제한 해제
-    grid.classList.add('expanded');
-    // 버튼 및 그라데이션 숨김
-    btnWrap.classList.add('hidden');
-}
-
-// (선택) 사진 클릭 시 확대 보기
-function viewPhoto(img) {
-    const modal = document.getElementById('photoModal');
-    const modalImg = document.getElementById('modalImg');
-    modalImg.src = img.src;
-    modal.classList.add('active');
-}
-
-function closePhoto() {
-    document.getElementById('photoModal').classList.remove('active');
-}
-</script>
-
-
+    <script src="./js/confetti.js"></script>
+    <script src="./js/startCountdown.js"></script>
+    <script src="./js/submitGuestbook.js"></script>
+        
+    <script src="./js/script.js"></script>
 </body>
 </html>
