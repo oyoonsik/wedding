@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="윤식♥혜미 결혼합니다">
-    <meta property="og:description" content="10월 10일, 저희의 시작을 함께해주세요. (신랑이 직접 코딩한 청첩장 구경오세요! 👨‍💻)">
+    <meta property="og:description" content="10월 10일. L65호텔웨딩컨벤션에서 저희 두 사람의 결혼식이 있습니다. 소중한 분들을 초대합니다.">
     <meta property="og:image" content="img/main_photo.jpg"> </head>
     <title>윤식 ♥ 혜미 결혼합니다.</title>
     
@@ -16,7 +16,7 @@
 
     <script src="./js/confetti.js" charset="utf-8"></script>
     <script src="./js/startCountdown.js" charset="utf-8"></script>
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=vs0kt54ni8"></script>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -96,7 +96,7 @@
         <div class="family-row">
             <div class="family-text">
                 <span class="p-names">오영철 · 이금하</span>
-                <span class="p-rel">의 아들</span>
+                <span class="p-rel">의 장남</span>
                 <span class="m-name">오윤식</span>
             </div>
             <button class="round-contact-btn" onclick="openContact('groom')">연락하기</button>
@@ -105,7 +105,7 @@
         <div class="family-row">
             <div class="family-text">
                 <span class="p-names">박호철 · 장환순</span>
-                <span class="p-rel">의 딸</span>
+                <span class="p-rel">의 장녀</span>
                 <span class="m-name">박혜미</span>
             </div>
             <button class="round-contact-btn" onclick="openContact('bride')">연락하기</button>
@@ -316,12 +316,12 @@
     </div>
 
     <div class="venue-info">
-        <h4 class="venue-name">L65호텔웨딩컨벤션, 6층</h4>
+        <h4 class="venue-name">L65호텔웨딩컨벤션, 6층 가든홀</h4>
         <p class="venue-addr">서울 동대문구 왕산로 200</p>
         <p class="venue-tel">Tel. 02-2184-4500</p>
     </div>
 
-    <div id="map" class="api-map-frame"></div>
+   <div id="map" style="width:100%; height:300px;"></div>
 
     <a href="img/map_view.jpg" target="_blank" class="static-map-btn">
         <span class="map-icon">🗺</span> 약도 이미지 보기
@@ -527,21 +527,27 @@ function closePhoto() {
 }
 </script>
 
+<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nzlnpk67vy"></script>
+
 <script>
-    // 지도 설정 (L65호텔웨딩컨벤션 좌표)
-    var mapOptions = {
-        center: new naver.maps.LatLng(37.58055, 127.0479), 
+window.addEventListener('load', function () {
+    if (!window.naver || !naver.maps) {
+        console.error('네이버 지도 API 로드 실패');
+        return;
+    }
+
+    const map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(37.58055, 127.0479),
         zoom: 16
-    };
+    });
 
-    var map = new naver.maps.Map('map', mapOptions);
-
-    // 마커 표시
-    var marker = new naver.maps.Marker({
+    new naver.maps.Marker({
         position: new naver.maps.LatLng(37.58055, 127.0479),
         map: map
     });
+});
 </script>
+
 
 </body>
 </html>
