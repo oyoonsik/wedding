@@ -114,16 +114,35 @@ window.onload = () => {
         });
     }
 
-    // 9. 방명록 (Guestbook)
+// 9. 방명록 (Guestbook) - 버튼 안 보임 해결 버전
     if(document.querySelector('.guestbook')) {
         const gbTl = gsap.timeline({
-            scrollTrigger: { trigger: ".guestbook", start: "top 75%", toggleActions: "play none none reverse" }
+            scrollTrigger: { 
+                trigger: ".guestbook", 
+                start: "top 95%",            // [수정] 화면 하단에 닿자마자 즉시 시작
+                toggleActions: "play none none none" // [수정] 한 번 뜨면 절대 안 사라짐
+            }
         });
         gbTl
-            .from(".guestbook .title-area", { y: 30, opacity: 0, duration: 0.8 })
-            .from(".guestbook-main-list", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
-            .from(".guest-more-area", { opacity: 0, duration: 0.5 }, "-=0.4")
-            .from(".write-floating-btn", { scale: 0, opacity: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }, "-=0.2");
+            .from(".guestbook .title-area", { 
+                y: 30, opacity: 0, duration: 0.8, 
+                clearProps: "all" 
+            })
+            .from(".guestbook-main-list", { 
+                y: 50, opacity: 0, duration: 0.8, ease: "power3.out",
+                clearProps: "all"
+            }, "-=0.6")
+            .from(".guest-more-area", { 
+                opacity: 0, duration: 0.5,
+                clearProps: "all"
+            }, "-=0.4")
+            .from(".write-floating-btn", { 
+                scale: 0.3, 
+                opacity: 0, 
+                duration: 0.6, 
+                ease: "elastic.out(1, 0.5)",
+                clearProps: "all" // [수정] 애니메이션 끝나면 무조건 보이게 강제 설정
+            }, "-=0.2");
     }
 
     // 10. 스냅 (Snap) - 버튼 안 보임 해결 버전
