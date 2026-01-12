@@ -12,7 +12,7 @@ body {
     background-color: #f8f8f8; 
     font-family: 'Pretendard', sans-serif; 
     color: var(--text-main);
-    overflow-x: hidden; /* 가로 스크롤 방지 */
+    overflow-x: hidden;
 }
 
 #wrap {
@@ -23,145 +23,42 @@ body {
     padding-bottom: 50px;
     position: relative;
     box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    overflow: hidden;
 }
 
-/* 공통 애니메이션 클래스 */
 .reveal { opacity: 0; }
 
 /* =========================================
-   [1] 메인 비주얼 (풀스크린 포스터 스타일)
-   ========================================= */
-
-.main_visual {
-    position: relative;
-    width: 100%;
-    height: 80vh; 
-    min-height: 600px; /* 너무 작아지지 않게 최소 높이 안전장치 */ 
-    padding: 0;
-    overflow: hidden;
-    background-color: #000;
-}
-
-/* 배경 이미지 설정 */
-.img_frame {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-}
-
-.img_frame img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    /* 글씨가 잘 보이게 사진을 살짝 어둡게 (밝은 사진일 경우 필수) */
-    filter: brightness(0.85); 
-    /* 사진 위치 조절: 얼굴이 잘리면 center top 등으로 변경해보세요 */
-    object-position: center;
-}
-
-/* 모서리 영문 텍스트 (SIMPLY, MEANT...) */
-.corner-text {
-    position: absolute;
-    color: rgba(255, 255, 255, 0.9);
-    font-family: 'Noto Serif KR', serif;
-    font-size: 12px; /* 글자 크기 살짝 줄임 */
-    letter-spacing: 2px;
-    font-weight: 500;
-    z-index: 10;
-    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-}
-
-.top-left { top: 30px; left: 25px; }
-.top-right { top: 30px; right: 25px; }
-.bottom-left { bottom: 30px; left: 25px; }
-.bottom-right { bottom: 30px; right: 25px; }
-
-
-/* 중앙 날짜 숫자 디자인 */
-.poster-date {
-    position: absolute;
-    top: 52%; left: 50%; /* 시선 중앙에 맞춤 */
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* 숫자끼리 겹치는 느낌을 위한 줄 간격 */
-    line-height: 0.8; 
-}
-
-.date-num {
-   /* 기존 Noto Serif KR 대신 이거 사용 */
-    font-family: 'Bodoni Moda', serif; 
-    
-    font-size: 90px; /* 크기 유지 */
-    color: #fff;
-    
-    /* 두께를 700~800 정도로 두껍게 주면 더 임팩트 있습니다 */
-    font-weight: 700; 
-    
-    /* 숫자를 살짝 기울이면(italic) 훨씬 감각적입니다 (선택사항) */
-    font-style: italic; 
-    
-    letter-spacing: -5px; /* 숫자끼리 딱 붙게 */
-    text-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    margin: -8px 0; /* 줄 간격 밀착 */
-}
-
-/* =========================================
-   [1] 메인 비주얼 (높이 수정됨)
+   [1] 메인 비주얼
    ========================================= */
 .main_visual {
     position: relative;
     width: 100%;
-    
-    /* 1. 높이 고정: dvh 단위를 써야 주소창이 움직여도 흔들리지 않습니다 */
     height: 80vh; 
-    height: 80dvh; /* 모바일 전용 단위 (필수) */
-    
+    height: 80dvh;
     padding: 0;
     overflow: hidden;
-    
-    /* 2. 배경색 변경: 로딩 중에 검은색이 보이지 않게 흰색으로 변경 */
     background-color: #fff;
 }
 
-/* 배경 이미지 설정 (그대로 유지) */
 .img_frame {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-      
-     /* 이미지가 부모 요소를 꽉 채우도록 설정 */
-    display: flex; 
-    justify-content: center;
-    align-items: center;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 0;
+    display: flex; justify-content: center; align-items: center;
 }
 
 .img_frame img {
     width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: brightness(0.85); 
-
-    /* [중요] 3. 이미지를 블록으로 바꿔서 하단 미세 틈(3px) 제거 */
-    display: block; 
-    /* 혹시 몰라 추가하는 안전장치 */
-    vertical-align: bottom;
+    object-fit: cover; object-position: center;
+    filter: brightness(0.85); display: block; 
 }
 
-/* 모서리 영문 텍스트 (위치 미세 조정) */
 .corner-text {
     position: absolute;
     color: rgba(255, 255, 255, 0.9);
     font-family: 'Noto Serif KR', serif;
-    font-size: 12px; /* 글자 크기 살짝 줄임 */
-    letter-spacing: 2px;
-    font-weight: 500;
-    z-index: 10;
-    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    font-size: 12px; letter-spacing: 2px; font-weight: 500;
+    z-index: 10; text-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 .top-left { top: 30px; left: 20px; }
@@ -169,233 +66,128 @@ body {
 .bottom-left { bottom: 35px; left: 20px; }
 .bottom-right { bottom: 35px; right: 20px; }
 
-/* 중앙 날짜 타이포그래피 */
 .poster-date {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); z-index: 10;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
     line-height: 0.9; 
 }
 
-/* 큰 숫자 (월/일) */
 .date-num {
-    font-family: 'Bodoni Moda', serif;
-    font-size: 100px; /* 주인공은 더 크게 */
-    color: #fff;
-    font-weight: 700;
-    font-style: italic;
-    line-height: 0.85;
-    margin-bottom: 5px; /* 년도와의 간격 */
+    font-family: 'Bodoni Moda', serif; font-size: 100px;
+    color: #fff; font-weight: 700; font-style: italic;
+    line-height: 0.85; margin-bottom: 5px;
     text-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* 작은 년도 (2026) */
 .year-num {
-    font-family: 'Bodoni Moda', serif; /* 같은 폰트 */
-    font-size: 24px; /* 작게 */
-    letter-spacing: 10px; /* 자간을 넓게 벌려서 세련되게 */
-    color: #fff;
-    font-weight: 400;
-    margin-top: 15px; /* 위 숫자들과 거리 두기 */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    font-family: 'Bodoni Moda', serif; font-size: 24px;
+    letter-spacing: 10px; color: #fff; font-weight: 400;
+    margin-top: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-/* 모바일 화면 대응 */
 @media (max-width: 380px) {
     .date-num { font-size: 75px; } 
     .corner-text { font-size: 10px; }
-    .main_visual { height: 75vh; } /* 작은 폰에서는 조금 더 줄임 */
+    .main_visual { height: 75vh; }
 }
 
 /* =========================================
-   [2] 인트로 (첫 로딩 화면)
+   [2] 인트로
    ========================================= */
 .intro-section {
-    position: fixed;
-    top: 0; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    width: 100%; 
-    height: 100vh;
-    height: 100dvh; 
-    max-width: 450px; /* #wrap과 동일하게 */
-    background: #fff;
-    z-index: 1000;
-    overflow: hidden;
+    position: fixed; top: 0; left: 50%; transform: translateX(-50%); 
+    width: 100%; height: 100vh; height: 100dvh; 
+    max-width: 450px; background: #fff; z-index: 1000; overflow: hidden;
 }
 
-.intro-img-frame {
-    width: 100%; height: 100%;
-    position: relative;
+.intro-img-frame { width: 100%; height: 100%; position: relative; }
+.intro-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.intro-handwrite-box {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); z-index: 10;
+    text-align: center; width: 100%;
 }
 
-.intro-img-frame img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    image-rendering: -webkit-optimize-contrast;
+.hw-wrapper {
+    display: inline-block; overflow: hidden; width: 0;
+    border-right: 2px solid rgba(255,255,255,0.8);
+    vertical-align: middle; white-space: nowrap;
 }
 
-.intro-text {
-    position: absolute;
-    top: 50%; left: 0; width: 100%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #fff;
-    font-family: 'Noto Serif KR', serif;
-    z-index: 2;
+.hw-text {
+    font-family: 'Great Vibes', cursive; font-size: 3rem;
+    color: #fff; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    padding-right: 4px; padding-left: 2px;
 }
 
-.main-title {
-    font-size: 50px;
-    line-height: 1.1;
-    letter-spacing: 2px;
+.hw-date {
+    font-family: 'Bodoni Moda', serif; font-size: 1.2rem;
+    color: #eee; margin-top: 15px; opacity: 0;
+    letter-spacing: 3px; font-weight: 300;
 }
 
-.sub-text-wrap {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 40px auto 0;
-    font-size: 12px;
-    letter-spacing: 3px;
-    opacity: 0.8;
+@media (max-width: 768px) {
+    .hw-text { font-size: 2.8rem; }
+    .hw-date { font-size: 1rem; }
 }
 
 /* 음악 버튼 */
 .music-btn {
-    position: fixed;
-    top: 0px;
-    right: calc(50% - 205px);
-    z-index: 2000;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 10px;
-    color: #4b4848; /* 메인이 어두워졌으므로 버튼도 흰색 추천 */
+    position: fixed; top: 0px; right: calc(50% - 205px);
+    z-index: 2000; cursor: pointer; display: flex;
+    align-items: center; gap: 4px; padding: 10px; color: #4b4848;
 }
-
-.music-bar-wrap {
-    display: flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 12px;
-}
+.music-bar-wrap { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
 .bar {
-    width: 2px;
-    background: #906948;
-    height: 100%;
-    animation: bounce 0.8s infinite alternate;
-    animation-play-state: paused;
+    width: 2px; background: #906948; height: 100%;
+    animation: bounce 0.8s infinite alternate; animation-play-state: paused;
 }
 .music-btn.playing .bar { animation-play-state: running; }
 @keyframes bounce { from { height: 3px; } to { height: 12px; } }
 @media (max-width: 450px) { .music-btn { right: 15px; } }
 
-
 /* =========================================
-   [3] 인사말 섹션 (요청하신 스크린샷 디자인)
+   [3] 인사말 & 가족
    ========================================= */
-.greeting {
-    padding: 60px 20px;
-    text-align: center;
-    background-color: #fff;
-}
-
+.greeting { padding: 60px 20px; text-align: center; background-color: #fff; }
 .title-area { margin-bottom: 40px; }
-
 .eng-title {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: #ccaea3; 
-    margin-bottom: 10px;
-    font-family: 'Noto Serif KR', serif;
-    text-transform: uppercase;
+    display: block; font-size: 11px; letter-spacing: 3px;
+    color: #ccaea3; margin-bottom: 10px;
+    font-family: 'Noto Serif KR', serif; text-transform: uppercase;
 }
-
 .kor-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 19px;
-    color: #ccaea3;
-    font-weight: 500;
+    font-family: 'Noto Serif KR', serif; font-size: 19px;
+    color: #ccaea3; font-weight: 500;
 }
-
 .greeting_text {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
-    line-height: 2.4;
-    color: #555;
-    word-break: keep-all;
+    font-family: 'Noto Serif KR', serif; font-size: 15px;
+    line-height: 2.4; color: #555; word-break: keep-all;
 }
 
-
-/* =========================================
-   [4] 가족 연락처 섹션 (버튼형)
-   ========================================= */
-.family-section {
-    padding: 0 20px 60px; /* 위쪽 여백 줄임 (인사말과 자연스럽게) */
-    background: #fff;
-}
-
-/* 중간 사진 */
-.family-photo {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 40px;
-    padding: 0 10px;
-}
-.family-photo img {
-    width: 100%;
-    display: block;
-    border-radius: 4px;
-}
-
-/* 가족 정보 라인 */
+.family-section { padding: 0 20px 50px; background: #fff; }
+.family-photo { width: 100%; max-width: 400px; margin: 0 auto 40px; padding: 0 10px; }
+.family-photo img { width: 100%; display: block; border-radius: 4px; }
 .family-row { 
-    max-width: 380px; 
-    margin: 0 auto 10px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 15px 5px; 
-    border-bottom: 1px solid #f9f9f9; 
+    max-width: 380px; margin: 0 auto 10px; display: flex; 
+    justify-content: space-between; align-items: center; 
+    padding: 15px 5px; border-bottom: 1px solid #f9f9f9; 
 }
-
-.family-text {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
-    text-align: left;
-    color: #333;
-}
+.family-text { font-family: 'Noto Serif KR', serif; font-size: 15px; text-align: left; color: #333; }
 .p-names { font-weight: 500; }
 .p-rel { font-size: 13px; color: #999; margin: 0 6px; }
 .m-name { font-weight: 500; color: #222; }
-
-/* 연락하기 알약 버튼 */
 .round-contact-btn { 
-    cursor: pointer; 
-    border: 1px solid #e0e0e0; 
-    border-radius: 20px; 
-    padding: 6px 14px; 
-    font-size: 12px; 
-    background: #fff; 
-    color: #666;
-    transition: 0.2s;
+    cursor: pointer; border: 1px solid #e0e0e0; border-radius: 20px; 
+    padding: 6px 14px; font-size: 12px; background: #fff; color: #666; transition: 0.2s;
 }
-.round-contact-btn:hover {
-    border-color: var(--point);
-    color: var(--point);
-}
-
+.round-contact-btn:hover { border-color: var(--point); color: var(--point); }
 
 /* =========================================
-   [5] 연락처 팝업 (바텀 시트)
+   [4] 팝업 공통 (연락처, 인터뷰 등)
    ========================================= */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -405,12 +197,10 @@ body {
 .modal-content {
     width: 100%; max-width: 450px; margin: 0 auto;
     background: #fff; border-radius: 20px 20px 0 0;
-    padding: 25px 20px; 
-    transform: translateY(100%); transition: transform 0.3s ease-out;
+    padding: 25px 20px; transform: translateY(100%); transition: transform 0.3s ease-out;
 }
 .modal-overlay.active { display: flex; }
 .modal-overlay.active .modal-content { transform: translateY(0); }
-
 .modal-header { 
     display: flex; justify-content: space-between; align-items: center;
     padding-bottom: 15px; border-bottom: 1px solid #eee; 
@@ -418,6 +208,7 @@ body {
 }
 .close-x { border: none; background: none; font-size: 20px; cursor: pointer; color: #999; }
 
+/* 연락처 내용 */
 .contact-item-box {
     display: flex; justify-content: space-between; align-items: center; 
     padding: 18px 0; border-bottom: 1px solid #f9f9f9;
@@ -425,840 +216,378 @@ body {
 .contact-info-text { display: flex; flex-direction: column; gap: 4px; }
 .info-rel { font-size: 12px; color: #999; }
 .info-name { font-size: 16px; font-weight: 500; }
-
 .contact-actions { display: flex; gap: 10px; }
 .action-link { 
-    text-decoration: none; font-size: 16px; 
-    width: 36px; height: 36px; 
+    text-decoration: none; font-size: 16px; width: 36px; height: 36px; 
     border-radius: 50%; border: 1px solid #eee; 
     display: flex; align-items: center; justify-content: center; 
     color: #666; transition: 0.2s;
 }
-.action-link:hover { border-color: var(--point); color: var(--point); }
 
-
-/* =========================================
-   [인터뷰 섹션 스타일]
-   ========================================= */
-.interview-section {
-    padding: 80px 20px;
-    background-color: #fff;
-    text-align: center;
-}
-
+/* 인터뷰 섹션 */
+.interview-section { padding: 80px 20px; background-color: #fff; text-align: center; }
 .interview-header { margin-bottom: 30px; }
-
 .kor-subtitle {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 20px;
-    color: #ccaea3; /* 핑크 브라운 포인트 컬러 */
-    margin: 10px 0 20px;
-    font-weight: 500;
+    font-family: 'Noto Serif KR', serif; font-size: 20px;
+    color: #ccaea3; margin: 10px 0 20px; font-weight: 500;
 }
-
-.desc-text {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.8;
-}
-
-/* 사진 2분할 레이아웃 */
-.interview-photos {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* 사진 사이 간격 */
-    margin-bottom: 30px;
-}
-
-.photo-box {
-    width: 45%; /* 화면의 절반 조금 안 되게 */
-    aspect-ratio: 1 / 1.2; /* 세로가 살짝 긴 직사각형 비율 */
-    border-radius: 15px; /* 모서리 둥글게 */
-    overflow: hidden;
-    background: #eee;
-}
-
-.photo-box img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-}
-
-/* 인터뷰 버튼 디자인 */
+.desc-text { font-size: 14px; color: #666; line-height: 1.8; }
+.interview-photos { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.photo-box { width: 45%; aspect-ratio: 1 / 1.2; border-radius: 15px; overflow: hidden; background: #eee; }
+.photo-box img { width: 100%; height: 100%; object-fit: cover; }
 .interview-btn {
-    width: 100%;
-    max-width: 320px;
-    padding: 15px;
-    border: 1px solid #f0dcd6; /* 연한 핑크 테두리 */
-    background: #fff;
-    border-radius: 50px; /* 알약 모양 */
-    color: #8c7b75;
-    font-size: 14px;
-    font-family: 'Noto Serif KR', serif;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 auto;
+    width: 100%; max-width: 320px; padding: 15px; border: 1px solid #f0dcd6;
+    background: #fff; border-radius: 50px; color: #8c7b75;
+    font-size: 14px; font-family: 'Noto Serif KR', serif; cursor: pointer;
+    transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto;
 }
-
-.interview-btn:hover {
-    background-color: #fcf6f4;
-    border-color: #ccaea3;
-}
-
-.btn-icon { font-size: 16px; color: #ccaea3; }
-
-
-/* =========================================
-   [인터뷰 팝업 내용 스타일]
-   ========================================= */
-/* 기존 팝업(modal-content) 스타일을 상속받되 높이 조절 */
-.interview-content {
-    height: 80vh; /* 화면의 80% 높이까지 올라오게 */
-    overflow-y: auto; /* 내용이 길면 스크롤 */
-}
-
-.modal-title { 
-    color: #ccaea3; 
-    font-family: 'Noto Serif KR', serif; 
-    letter-spacing: 2px;
-}
-
-.interview-body {
-    padding: 10px 5px;
-    text-align: left;
-}
-
-.qna-box { 
-    margin-bottom: 40px; 
-    border-bottom: 1px dashed #eee; /* 질문 사이 구분선 */
-    padding-bottom: 30px;
-}
+.interview-content { height: 80vh; overflow-y: auto; }
+.interview-body { padding: 10px 5px; text-align: left; }
+.qna-box { margin-bottom: 40px; border-bottom: 1px dashed #eee; padding-bottom: 30px; }
 .qna-box:last-child { border-bottom: none; }
+.q { font-size: 16px; font-weight: bold; color: #ccaea3; margin-bottom: 15px; font-family: 'Noto Serif KR', serif; }
+.answer-block { margin-bottom: 20px; }
+.speaker { font-weight: bold; color: #222; font-size: 14px; margin-bottom: 5px; }
+.a { font-size: 14px; color: #555; line-height: 1.8; background-color: #f9f9f9; padding: 15px; border-radius: 8px; word-break: keep-all; }
 
-.q {
-    font-size: 16px;
-    font-weight: bold;
-    color: #ccaea3; /* 포인트 컬러 */
-    margin-bottom: 15px;
-    font-family: 'Noto Serif KR', serif;
-}
-
-.answer-block {
-    margin-bottom: 20px;
-}
-
-.speaker {
-    font-weight: bold;
-    color: #222;
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.a {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.8; /* 줄 간격 넉넉하게 */
-    background-color: #f9f9f9; /* 답변 배경 살짝 깔아줌 */
-    padding: 15px;
-    border-radius: 8px;
-    word-break: keep-all;
-}
-
-.name { font-weight: bold; color: #333; margin-right: 5px; }
-
-
-/* 꽃가루 효과 캔버스 스타일 */
-#confetti-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 중요: z-index 순서
-       0 (사진) < 5 (꽃가루) < 10 (글자)
-       이렇게 설정해야 꽃가루가 글자 뒤로 내립니다.
-    */
-    z-index: 5; 
-    pointer-events: none; /* 마우스 클릭이 통과되도록 설정 */
-}
-
+#confetti-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
 
 /* =========================================
-   [갤러리 섹션 스타일]
+   [5] 갤러리
    ========================================= */
-.gallery-section {
-    padding: 80px 20px;
-    background-color: #fff;
-    text-align: center;
-}
-
+.gallery-section { padding: 80px 20px; background-color: #fff; text-align: center; }
 .gallery-header { margin-bottom: 30px; }
-
-/* 갤러리 그리드 레이아웃 */
 .gallery-grid {
-    display: grid;
-    /* 2열 배치 */
-    grid-template-columns: 1fr 1fr; 
-    gap: 10px; /* 사진 사이 간격 */
-    
-    /* [초기 상태] 높이를 제한하고 넘치는 건 숨김 */
-    max-height: 500px; 
-    overflow: hidden;
-    position: relative;
-    transition: max-height 0.5s ease-in-out; /* 부드럽게 열리기 */
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; 
+    max-height: 500px; overflow: hidden; position: relative; 
+    transition: max-height 0.5s ease-in-out; 
 }
-
-/* 그리드 아이템 */
-.gallery-item {
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s;
-}
-
-/* [중요] 세로로 긴 사진 (2칸 차지) */
-.gallery-item.tall {
-    grid-row: span 2; /* 세로로 2칸 병합 */
-}
-
-/* 더보기 버튼 영역 */
+.gallery-item { position: relative; border-radius: 4px; overflow: hidden; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.gallery-item.tall { grid-row: span 2; }
 .more-btn-wrap {
-    position: relative;
-    margin-top: -80px; /* 사진 위로 살짝 겹치게 올려서 그라데이션 효과 */
-    padding-top: 80px;
-    padding-bottom: 20px;
-    /* 흰색 그라데이션으로 자연스럽게 가려짐 */
-    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%);
-    z-index: 5;
+    position: relative; margin-top: -80px; padding-top: 80px; padding-bottom: 20px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%); z-index: 5;
 }
-
 .gallery-more-btn {
-    background: #fff;
-    border: 1px solid #eee;
-    padding: 10px 30px;
-    border-radius: 30px;
-    color: #555;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-family: 'Noto Serif KR', serif;
+    background: #fff; border: 1px solid #eee; padding: 10px 30px;
+    border-radius: 30px; color: #555; font-size: 14px; cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: inline-flex;
+    align-items: center; gap: 5px; font-family: 'Noto Serif KR', serif;
 }
-
-.arrow-down { font-size: 10px; margin-top: 2px; }
-
-/* 갤러리가 펼쳐졌을 때 스타일 */
-.gallery-grid.expanded {
-    max-height: 2000px; /* 충분히 큰 값으로 변경 */
-}
-.more-btn-wrap.hidden {
-    display: none; /* 버튼 숨김 */
-}
-
-/* (선택) 사진 확대 모달 스타일 */
+.gallery-grid.expanded { max-height: 2000px; }
+.more-btn-wrap.hidden { display: none; }
 .photo-modal-content {
-    width: 100%; height: 100%;
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
+    width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;
 }
-.photo-modal-content img {
-    max-width: 95%; max-height: 90%;
-    border-radius: 5px;
-}
+.photo-modal-content img { max-width: 95%; max-height: 90%; border-radius: 5px; }
 .close-x-white {
-    position: absolute; top: 20px; right: 20px;
-    background: none; border: none; color: #fff; font-size: 30px; cursor: pointer;
+    position: absolute; top: 20px; right: 20px; background: none; border: none;
+    color: #fff; font-size: 30px; cursor: pointer;
 }
 
 /* =========================================
-   [달력 & 카운트다운 스타일]
+   [6] 달력
    ========================================= */
-.calendar-section {
-    padding: 80px 20px;
-    background-color: #fff;
-    text-align: center;
-    font-family: 'Noto Serif KR', serif;
-}
-
-.calendar-header {
-    margin-bottom: 30px;
-    color: #333;
-}
-
+.calendar-section { padding: 80px 20px; background-color: #fff; text-align: center; font-family: 'Noto Serif KR', serif; }
+.calendar-header { margin-bottom: 30px; color: #333; }
 .cal-year { display: block; font-size: 22px; letter-spacing: 2px; margin-bottom: 5px; }
 .cal-time { display: block; font-size: 14px; color: #888; }
-
-/* 달력 테이블 */
-.calendar-wrap {
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto 50px;
-}
-
-.calendar-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-.calendar-table th {
-    font-weight: normal;
-    font-size: 13px;
-    color: #666;
-    padding-bottom: 15px;
-}
-
-.calendar-table td {
-    height: 45px; /* 칸 높이 */
-    font-size: 14px;
-    color: #444;
-    vertical-align: middle;
-}
-
-/* 일요일/공휴일 빨간색 */
+.calendar-wrap { width: 100%; max-width: 350px; margin: 0 auto 50px; }
+.calendar-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 20px; text-align: center; }
+.calendar-table th, .calendar-table td { width: 14.28%; padding: 10px 0; font-size: 14px; font-weight: 400; text-align: center; vertical-align: middle; }
+.calendar-table th { font-weight: normal; color: #888; padding-bottom: 15px; }
 .sun, .holliday { color: #e66a6a !important; }
-
-/* 디데이 동그라미 (결혼식 날) */
 .d-day span {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px; height: 30px;
-    background-color: #8c7b75; /* 포인트 컬러 (브라운 핑크) */
-    color: #fff;
-    border-radius: 50%;
-    font-weight: bold;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; background-color: #6d645d; color: #fff;
+    border-radius: 50%; font-weight: bold; font-size: 14px; line-height: 1;      
 }
-
-/* 카운트다운 타이머 */
-.countdown-area {
-    border-top: 1px solid #eee;
-    padding-top: 40px;
-}
-
-.timer-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.time-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50px;
-}
-
-.time-item span:first-child {
-    font-size: 24px;
-    font-family: 'Bodoni Moda', serif; /* 숫자 폰트 */
-    font-weight: 600;
-}
-
-.label {
-    font-size: 10px;
-    color: #bbb;
-    letter-spacing: 1px;
-    margin-top: 5px;
-}
-
-.colon {
-    font-size: 20px;
-    margin-bottom: 15px; /* 숫자와 높이 맞춤 */
-    color: #ccc;
-}
-
-.d-day-text {
-    font-size: 14px;
-    color: #666;
-}
-.accent-text {
-    color: #e66a6a;
-    font-weight: bold;
-}
+.countdown-area { border-top: 1px solid #eee; padding-top: 40px; }
+.timer-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; color: #333; }
+.time-item { display: flex; flex-direction: column; align-items: center; width: 50px; }
+.time-item span:first-child { font-size: 24px; font-family: 'Bodoni Moda', serif; font-weight: 600; }
+.label { font-size: 10px; color: #bbb; letter-spacing: 1px; margin-top: 5px; }
+.colon { font-size: 20px; margin-bottom: 15px; color: #ccc; }
+.d-day-text { font-size: 14px; color: #666; }
+.accent-text { color: #e66a6a; font-weight: bold; }
 
 /* =========================================
-   [오시는 길 - API 지도 & 버튼 스타일]
+   [7] 오시는 길
    ========================================= */
-.location-section {
-    padding: 80px 20px;
-    background-color: #fff;
-    text-align: center;
-}
-
+.location-section { padding: 80px 20px; background-color: #fff; text-align: center; }
 .venue-info { margin-bottom: 30px; font-family: 'Noto Serif KR', serif; }
 .venue-name { font-size: 20px; font-weight: 600; margin-bottom: 10px; color: #333; }
 .venue-addr { font-size: 15px; color: #666; margin-bottom: 5px; }
 .venue-tel { font-size: 14px; color: #999; }
-
-/* 1. API 지도 프레임 */
-.api-map-frame {
-    width: 100%;
-    height: 300px; /* 지도 높이 */
-    border: 1px solid #eee; /* 테두리 살짝 */
-    margin: 0 auto 15px; /* 버튼과의 간격 */
-    border-radius: 5px; /* 모서리 살짝 둥글게 */
-}
-
-/* 2. 약도 이미지 보기 버튼 (핵심 디자인) */
 .static-map-btn {
-    display: block;
-    width: 100%;
-    max-width: 400px; /* 너무 넓어지지 않게 제한 */
-    margin: 0 auto 40px;
-    padding: 15px 0;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 12px; /* 둥근 모서리 */
-    color: #444;
-    font-size: 15px;
-    text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* 아주 연한 그림자 */
+    display: block; width: 100%; max-width: 400px; margin: 0 auto 40px; padding: 15px 0;
+    background-color: #fff; border: 1px solid #e5e5e5; border-radius: 12px; 
+    color: #444; font-size: 15px; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.03); 
     transition: all 0.2s;
 }
-
-.static-map-btn:active {
-    background-color: #f5f5f5;
-    transform: scale(0.98);
-}
-
 .map-icon { margin-right: 5px; }
-
-/* 3. 내비게이션 영역 */
 .navi-section { text-align: left; padding-top: 20px; border-top: 1px solid #f9f9f9; }
 .navi-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 5px; }
 .navi-desc { font-size: 12px; color: #999; margin-bottom: 15px; }
-
-.navi-grid {
-    display: flex;
-    justify-content: space-between; /* 버튼 사이 간격 균등 배치 */
-    gap: 10px; /* 버튼 사이 틈 */
-    margin-top: 20px;
-}
-
+.navi-grid { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
 .navi-btn {
-    flex: 1; /* 3개 버튼 크기 똑같이 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff; /* 흰색 배경 */
-    border: 1px solid #e1e1e1; /* 연한 회색 테두리 */
-    border-radius: 8px; /* 모서리 둥글게 */
-    padding: 12px 0; /* 위아래 여백 */
-    text-decoration: none;
-    color: #333; /* 글씨 색상 */
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.2s; /* 부드러운 효과 */
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    background-color: #fff; border: 1px solid #e1e1e1; border-radius: 8px; 
+    padding: 12px 0; text-decoration: none; color: #333; font-size: 13px; font-weight: 500; transition: all 0.2s; 
 }
+.nav-icon-img { width: 20px; height: 20px; margin-right: 6px; object-fit: contain; }
+.transport-info { margin-top: 40px; padding: 30px 20px; background-color: #f9f9f9; border-radius: 12px; text-align: left; }
+.trans-row { margin-bottom: 20px; }
+.trans-title { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 12px; }
+.trans-list { list-style: none; padding: 0; margin: 0; }
+.trans-list li { font-size: 15px; color: #555; margin-bottom: 8px; display: flex; align-items: center; }
+.trans-text { font-size: 15px; color: #555; }
+.trans-desc { font-size: 13px; color: #888; margin-top: 8px; padding-left: 2px; }
+.trans-divider { border-top: 1px dashed #ddd; margin: 20px 0; }
+.dot { font-size: 12px; margin-right: 8px; position: relative; top: -1px; }
+.line-1 { color: #0052A4; } .line-kj { color: #77C4A3; } .bus-red { color: #e60012; }
+.trans-sub-title { font-size: 14px; font-weight: 600; color: #555; margin-bottom: 8px; display: block; }
 
-/* 마우스 올렸을 때 효과 */
-.navi-btn:hover {
-    background-color: #f8f8f8;
-    border-color: #ccc;
-}
-
-/* 아이콘 이미지 크기 조절 */
-.nav-icon-img {
-    width: 20px;  /* 아이콘 너비 */
-    height: 20px; /* 아이콘 높이 */
-    margin-right: 6px; /* 글자와 아이콘 사이 간격 */
-    object-fit: contain;
-}
-
-/* --- 교통편 안내 섹션 스타일 --- */
-.transport-info {
-    margin-top: 40px;
-    padding: 30px 20px;
-    background-color: #f9f9f9; /* 연한 회색 배경 (이미지와 비슷하게) */
-    border-radius: 12px;
-    text-align: left; /* 왼쪽 정렬 */
-}
-
-.trans-row {
-    margin-bottom: 20px;
-}
-
-.trans-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-.trans-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.trans-list li {
-    font-size: 15px;
-    color: #555;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.trans-text {
-    font-size: 15px;
-    color: #555;
-}
-
-.trans-desc {
-    font-size: 13px;
-    color: #888;
-    margin-top: 8px;
-    padding-left: 2px;
-}
-
-/* 점선 구분선 */
-.trans-divider {
-    border-top: 1px dashed #ddd;
-    margin: 20px 0;
-}
-
-/* 색상 도트(●) 스타일 */
-.dot {
-    font-size: 12px;
-    margin-right: 8px;
-    position: relative;
-    top: -1px;
-}
-
-/* 노선별 색상 */
-/* --- L65 교통편 색상 추가 --- */
-.line-1 { color: #0052A4; }   /* 1호선 남색 */
-.line-kj { color: #77C4A3; }  /* 경의중앙/경춘선 민트색 */
-.bus-red { color: #e60012; }  /* 직행/광역버스 빨강 */
-.trans-sub-title {            /* 버스 정류장 이름 강조 */
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 8px;
-    display: block;
-}
-
-/* --- 중간 대형 이미지 섹션 --- */
-.middle-visual {
-    margin: 50px 0; /* 위아래 여백을 넉넉히 줌 */ 
-}
-
-.middle-visual .img-box {
-    width: 100%;
-    overflow: hidden; /* 둥근 모서리 밖으로 이미지 튀어나감 방지 */
-}
-
-.middle-visual .full-img {
-    width: 100%;
-    display: block; /* 이미지 하단 미세한 공백 제거 */
-    height: auto;
-    object-fit: cover; /* 비율 유지하며 꽉 채우기 */
-}
-
-/* --- 중간 이미지 위아래 그라데이션 효과 --- */
-.middle-visual .img-box {
-    position: relative; /* 가상 요소 배치를 위한 기준점 */
-    /* 기존 스타일 유지 (border-radius 등) */
-}
-
-/* 위쪽 그라데이션 (하얀색 -> 투명색) */
+.middle-visual { margin: 50px 0; }
+.middle-visual .img-box { width: 100%; overflow: hidden; position: relative; }
+.middle-visual .full-img { width: 100%; display: block; height: auto; object-fit: cover; }
 .middle-visual .img-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 25%; /* 그라데이션 높이 (조절 가능) */
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-    z-index: 1; /* 이미지 위에 올라오도록 */
-    pointer-events: none; /* 클릭 통과 */
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 25%;
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); z-index: 1; pointer-events: none;
 }
-
-/* 아래쪽 그라데이션 (투명색 -> 하얀색) */
 .middle-visual .img-box::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25%; /* 그라데이션 높이 (조절 가능) */
-    background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-    z-index: 1;
-    pointer-events: none;
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 25%;
+    background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); z-index: 1; pointer-events: none;
 }
 
-/* --- 방명록 (슬라이드형) 스타일 --- */
-.guestbook {
-    padding-bottom: 50px;
-    background-color: #fff; /* 배경색 */
-}
-
-/* --- 방명록 제목 중앙 정렬 수정 --- */
+/* =========================================================================
+   [8] 방명록 (리스트형 - 최종 수정)
+   ========================================================================= */
+.guestbook { padding-bottom: 50px; background-color: #fff; }
 .guestbook .title-area {
-    text-align: center;       /* 글자 가운데 정렬 */
-    display: flex;            /* 플렉스 박스 적용 */
-    flex-direction: column;   /* 위아래로 배치 */
-    align-items: center;      /* 가로축 가운데 정렬 */
-    margin-bottom: 30px;      /* 아래 카드와의 간격 띄우기 */
-    width: 100%;              /* 너비 꽉 채우기 */
+    text-align: center; display: flex; flex-direction: column; align-items: center;
+    margin-bottom: 30px; width: 100%;
 }
+/* =========================================================================
+   [수정] 방명록 리스트형 (더보기 확장 방식)
+   ========================================================================= */
 
-/* (혹시 모를) 버튼 위치도 깔끔하게 */
-.guest-btn-area {
-    padding-right: 20px;      /* 오른쪽 여백 확보 */
-    margin-top: 10px;
-}
-/* --- 방명록 슬라이드 기능 (수정) --- */
-
-/* 1. 슬라이드 틀 (스크롤 영역) */
-.guest-slider-wrap {
-    width: 100%;
-    overflow-x: auto;            /* 가로 스크롤 허용 (핵심!) */
-    padding: 20px 20px 40px 20px; /* 여백 */
-    
-    /* 모바일에서 부드럽게 */
-    -webkit-overflow-scrolling: touch;
-    
-    /* 스크롤바 숨기기 (선택사항) */
-    scrollbar-width: none;  /* 파이어폭스 */
-}
-
-.guest-slider-wrap::-webkit-scrollbar {
-    display: none;  /* 크롬, 사파리 */
-}
-
-/* 2. 슬라이드 내부 배치 */
-.guest-slider {
-    display: flex;        /* 가로 배치 */
-    gap: 15px;            /* 카드 사이 간격 */
-    width: max-content;   /* 내용물만큼 길어지게 설정 */
-}
-
-/* 3. 개별 카드 (찌그러짐 방지!) */
-.guest-card {
-    /* ★★★ 제일 중요한 부분! ★★★ */
-    flex: 0 0 auto;       /* 크기 고정 (절대 줄어들지 않음) */
-    width: 280px;         /* 카드 너비 */
-    height: 320px;        /* 카드 높이 */
-    
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    padding: 25px 20px;
-    
+/* 리스트 컨테이너 */
+.guestbook-main-list {
+    padding: 0 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    white-space: normal; /* 텍스트 줄바꿈 허용 */
+    gap: 5px; /* 카드 사이 간격 */
 }
 
-/* (기타 카드 내부 꾸미기 유지) */
-.card-flower { font-size: 24px; margin-bottom: 15px; }
-.card-msg { font-size: 14px; color: #555; line-height: 1.6; flex: 1; display: flex; align-items: center; word-break: keep-all; }
-.card-name { font-size: 14px; font-weight: bold; margin-top: 15px; }
-
-/* 하단 버튼 영역 */
-.guest-btn-area {
-    text-align: right; /* 오른쪽 정렬 */
-    padding: 0 20px;
-    margin-top: -10px;
-}
-
-.guest-btn {
-    background: none;
-    border: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-    margin-left: 15px;
-    padding: 5px;
-}
-
-.guest-btn.sub {
-    color: #888; /* 전체보기 버튼은 연하게 */
-}
-
-
-/* --- 방명록 작성 팝업 디자인 --- */
-.guest-write-box {
-    width: 90%;
-    max-width: 400px;
+/* 방명록 카드 디자인 */
+.main-guest-card {
     background-color: #fff;
-    border-radius: 0; /* 스크린샷처럼 각진 느낌을 원하시면 0, 둥글게는 8px */
-    overflow: hidden;
-    position: relative;
-    padding-bottom: 0;
-    margin: 0 auto;
-}
-
-/* 헤더 (제목 + 닫기버튼) */
-.guest-header {
-    display: flex;
-    justify-content: center; /* 제목 가운데 정렬 */
-    align-items: center;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
     padding: 20px;
-    border-bottom: 1px solid #eee;
-    position: relative;
-}
-
-.guest-header h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0;
-}
-
-.close-btn-black {
-    position: absolute;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* 입력 폼 영역 */
-.guest-form {
-    padding: 20px;
-}
-
-.input-group {
-    margin-bottom: 25px; /* 항목 사이 간격 */
-    border-bottom: 1px solid #eee; /* 밑줄 디자인 */
-    padding-bottom: 10px;
-}
-
-.input-group:last-child {
-    border-bottom: none; /* 마지막 내용은 밑줄 제거 (textarea라 높이가 있어서) */
-}
-
-.input-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.required {
-    color: #ff4d4f; /* 빨간색 별표 */
-    margin-left: 2px;
-}
-
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    border: none; /* 테두리 없애고 */
-    font-size: 15px;
-    padding: 5px 0;
-    outline: none;
-    color: #555;
-    font-family: 'Pretendard', sans-serif;
-}
-
-.input-group textarea {
-    height: 100px;
-    resize: none; /* 크기 조절 막기 */
-}
-
-.input-group input::placeholder,
-.input-group textarea::placeholder {
-    color: #ccc; /* 연한 회색 placeholder */
-}
-
-/* 하단 검정 버튼 */
-.submit-btn {
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    padding: 20px 0;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.submit-btn b {
-    font-weight: 700;
-}
-
-
-/* --- 방명록 전체보기 팝업 디자인 --- */
-.guest-list-wrap {
-    padding: 10px 20px;
-    max-height: 400px; /* 너무 길면 스크롤 */
-    overflow-y: auto;
-    background-color: #f9f9f9; /* 배경 살짝 회색 */
-}
-
-/* 개별 카드 (흰색 박스) */
-.guest-list-item {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 15px; /* 박스 사이 간격 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* 살짝 그림자 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     text-align: left;
+    transition: all 0.3s ease;
 }
 
-/* 상단: 이름 + 삭제버튼 가로 배치 */
-.list-top-row {
+/* 상단 영역 (이름 + 삭제버튼) */
+.main-card-header {
     display: flex;
-    justify-content: space-between; /* 양쪽 끝으로 밀어내기 (핵심!) */
+    justify-content: space-between; /* 양쪽 끝 정렬 */
     align-items: center;
     margin-bottom: 12px;
-    border-bottom: 1px solid #eee; /* 이름 밑에 옅은 줄 */
     padding-bottom: 10px;
+    border-bottom: 1px solid #f9f9f9; /* 연한 구분선 */
 }
 
-/* 이름 스타일 */
-.list-name {
-    font-weight: 800; /* 아주 굵게 */
-    font-size: 16px;
-    color: #000;
+.main-card-name {
+    font-weight: 800;
+    font-size: 15px;
+    color: #333;
 }
 
 /* 삭제(X) 버튼 스타일 */
-.list-del-btn {
-    background: #000; /* 검은색 배경 */
-    color: #fff;      /* 흰색 글씨 */
+.delete-btn {
+    background: none;
     border: none;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%; /* 동그랗게 */
-    font-size: 12px;
+    color: #999;
+    font-size: 16px;
+    padding: 5px;
     cursor: pointer;
-    display: flex;            /* 글자 가운데 정렬용 */
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+    line-height: 1;
 }
 
 /* 메시지 내용 */
-.list-msg {
-    font-size: 15px;
-    color: #444;
+.main-card-msg {
+    font-size: 14px;
+    color: #555;
     line-height: 1.6;
-    white-space: pre-wrap; /* 줄바꿈 유지 */
+    word-break: break-all;
+    white-space: pre-wrap; /* 줄바꿈 허용 */
+}
+
+/* 더보기 버튼 영역 */
+.guest-more-area {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.more-view-btn {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 10px 25px;
+    border-radius: 30px;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard', sans-serif;
+    transition: 0.2s;
+}
+.more-view-btn:hover { background-color: #f9f9f9; }
+
+/* 더이상 보여줄 글이 없을 때 버튼 숨김용 클래스 */
+.hidden { display: none !important; }
+
+
+/* 작성하기 버튼 (오른쪽 하단) */
+.guest-write-area { text-align: right; padding: 0 20px; }
+.write-floating-btn {
+    background-color: #fff; border: 1px solid #ddd; border-radius: 20px;
+    padding: 8px 16px; font-size: 13px; font-weight: 600; color: #333;
+    cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.2s;
+}
+.write-floating-btn:hover { border-color: #333; background-color: #f9f9f9; }
+
+/* 방명록 작성 팝업 (디자인 유지) */
+.guest-write-box {
+    width: 90%; max-width: 400px; background-color: #fff; border-radius: 0;
+    overflow: hidden; position: relative; padding-bottom: 0; margin: 0 auto;
+}
+.guest-header {
+    display: flex; justify-content: center; align-items: center;
+    padding: 20px; border-bottom: 1px solid #eee; position: relative;
+}
+.guest-header h3 { font-size: 18px; font-weight: 700; margin: 0; }
+.close-btn-black { position: absolute; right: 20px; background: none; border: none; font-size: 20px; cursor: pointer; }
+.guest-form { padding: 20px; }
+.input-group { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.input-group:last-child { border-bottom: none; }
+.input-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #333; }
+.required { color: #ff4d4f; margin-left: 2px; }
+.input-group input, .input-group textarea {
+    width: 100%; border: none; font-size: 15px; padding: 5px 0; outline: none; color: #555; font-family: 'Pretendard', sans-serif;
+}
+.input-group textarea { height: 100px; resize: none; }
+.submit-btn {
+    width: 100%; background-color: #000; color: #fff; border: none;
+    padding: 20px 0; font-size: 16px; font-weight: 500; cursor: pointer;
+}
+
+/* 방명록 전체보기 팝업 (상단 띄움) */
+#allGuestbookModal {
+    display: none; align-items: flex-start; padding-top: 15vh; justify-content: center;
+}
+#allGuestbookModal.active { display: flex; }
+#allGuestbookModal .guest-write-box {
+    width: 100%; max-width: 380px; height: auto; max-height: 70vh; 
+    background: #fff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex; flex-direction: column; margin: 0;
+}
+#guestbookListArea {
+    overflow-y: auto; padding: 0 20px 20px 20px; scrollbar-width: none; -ms-overflow-style: none;
+}
+#guestbookListArea::-webkit-scrollbar { display: none; }
+#allGuestbookModal .guest-header { padding: 20px 20px 10px 20px; flex-shrink: 0; }
+.guest-list-item {
+    background-color: #fff; border-radius: 8px; padding: 20px; margin-bottom: 15px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03); text-align: left;
+}
+.list-top-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px;
+}
+.list-name { font-weight: 800; font-size: 16px; color: #000; }
+.list-del-btn {
+    background: #000; color: #fff; border: none; width: 24px; height: 24px; border-radius: 50%;
+    font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;
+}
+.list-msg { font-size: 15px; color: #444; line-height: 1.6; white-space: pre-wrap; }
+
+/* --- 스냅(사진 업로드) 섹션 --- */
+.snap-section {
+    padding: 80px 20px;
+    background-color: #fcfcfc; /* 아주 연한 회색 배경 */
+    text-align: center;
+}
+
+.snap-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 폴라로이드 데코 (사진 3장 겹치기) */
+.polaroid-deco {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    margin: 0 auto 30px;
+}
+
+.p-img {
+    position: absolute;
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border-radius: 4px;
+}
+
+/* 사진 각도 비틀기 */
+.p1 { left: 10px; top: 10px; transform: rotate(-10deg); z-index: 1; }
+.p2 { left: 40px; top: 5px; transform: rotate(0deg); z-index: 2; }
+.p3 { left: 70px; top: 15px; transform: rotate(10deg); z-index: 3; }
+
+.snap-desc {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* 업로드 버튼 */
+.snap-upload-btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 15px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+.snap-upload-btn:hover {
+    border-color: #333;
+    background-color: #f9f9f9;
+}
+
+.snap-date-info {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #999;
+    line-height: 1.5;
 }
