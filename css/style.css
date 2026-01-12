@@ -94,44 +94,76 @@ body {
 }
 
 /* =========================================
-   [2] 인트로
+   [추가] 감성 인트로 스타일 (Theirmood st)
    ========================================= */
-.intro-section {
-    position: fixed; top: 0; left: 50%; transform: translateX(-50%); 
-    width: 100%; height: 100vh; height: 100dvh; 
-    max-width: 450px; background: #fff; z-index: 1000; overflow: hidden;
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* 사진 로딩 전 배경색 */
 }
 
-.intro-img-frame { width: 100%; height: 100%; position: relative; }
-.intro-img-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-.intro-handwrite-box {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%); z-index: 10;
-    text-align: center; width: 100%;
+/* 배경 사진 (블러 처리) */
+.intro-bg {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px) brightness(0.9); /* 블러 15px, 밝기 약간 어둡게 */
 }
 
-.hw-wrapper {
-    display: inline-block; overflow: hidden; width: 0;
-    border-right: 2px solid rgba(255,255,255,0.8);
-    vertical-align: middle; white-space: nowrap;
+/* 중앙 내용 */
+.intro-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: #fff; /* 글자색 (배경에 따라 검정으로 변경 가능) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
-.hw-text {
-    font-family: 'Great Vibes', cursive; font-size: 3rem;
-    color: #fff; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    padding-right: 4px; padding-left: 2px;
+/* 쿵쿵 뛰는 하트 */
+.heart-beat {
+    font-size: 40px;
+    color: #ffdde1; /* 연분홍색 (변경 가능) */
+    animation: heartPulse 1.2s infinite ease-in-out;
+    margin-bottom: 10px;
 }
 
-.hw-date {
-    font-family: 'Bodoni Moda', serif; font-size: 1.2rem;
-    color: #eee; margin-top: 15px; opacity: 0;
-    letter-spacing: 3px; font-weight: 300;
+.intro-names {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-@media (max-width: 768px) {
-    .hw-text { font-size: 2.5rem; }
-    .hw-date { font-size: 1rem; }
+.intro-details {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    opacity: 0.9;
+    line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* 하트 애니메이션 키프레임 */
+@keyframes heartPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 10px rgba(255, 221, 225, 0.8); }
+    100% { transform: scale(1); opacity: 0.8; }
 }
 
 /* 음악 버튼 */
@@ -590,4 +622,27 @@ body {
     font-size: 12px;
     color: #999;
     line-height: 1.5;
+}
+
+/* =========================================
+   [추가] 인트로 타이핑 효과 스타일
+   ========================================= */
+.typing-wrapper {
+    display: inline-block;
+    margin-bottom: 10px; /* 날짜와의 간격 */
+}
+
+.typing-text {
+    display: inline-block;
+    overflow: hidden;       /* 넘치는 글자 숨김 */
+    white-space: nowrap;    /* 줄바꿈 금지 */
+    width: 0;               /* 처음에 안 보이게 0에서 시작 */
+    border-right: 2px solid #fff; /* 커서(깜빡이는 막대) */
+    
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
