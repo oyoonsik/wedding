@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' d='M50 20c5-15 25-15 25 0 0 10-15 20-25 30C40 40 25 30 25 20c0-15 20-15 25 0z'/%3E%3Cpath fill='%23ffffff' d='M80 50c15 5 15 25 0 25-10 0-20-15-30-25 10-10 20-25 30-25c15 0 15 20 0 25z'/%3E%3Cpath fill='%23ffffff' d='M50 80c-5 15-25 15-25 0 0-10 15-20 25-30 10 10 25 20 25 30 0 15-20 15-25 0z'/%3E%3Cpath fill='%23ffffff' d='M20 50c-15-5-15-25 0-25 10 0 20 15 30 25-10 10-20 25-30 25-15 0-15-20 0-25z'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23ffdde1'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
 
     <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw"></script>
@@ -40,12 +41,12 @@
 <div id="intro" class="intro-section">
     <div class="intro-img-frame">
         <img src="./img/pc002232775.jpg" alt="Intro Photo">
-        <div class="intro-text">
-            <h1 class="main-title">LOVE OF<br>LIFE —</h1>
-            <div class="sub-text-wrap">
-                <span>WEDDING</span>
-                <span>INVITATION</span>
+        
+        <div class="intro-handwrite-box">
+            <div class="hw-wrapper">
+                <span class="hw-text">YoonSik & HyeMi</span>
             </div>
+            <p class="hw-date">2026. 10. 10</p>
         </div>
     </div>
 </div>
@@ -82,7 +83,7 @@
     </div>
     </section>
 
-   <section class="greeting reveal">
+   <section class="greeting greeting">
         <div class="title-area">
             <span class="eng-title">SOLD OUT</span>
             <h2 class="kor-title">저희, 진짜 갑니다!</h2>
@@ -101,7 +102,7 @@
         </div>
     </section>
 
-    <section class="family-section reveal">
+    <section class="family-section" id="family">
         <div class="family-photo">
             <img src="img/mkbtg001461.jpg" alt="신랑 신부">
         </div>
@@ -136,7 +137,7 @@
         </div>
     </div>
 
-    <section class="interview-section reveal">
+    <section class="interview-section">
     <div class="interview-header">
         <span class="eng-title">INTERVIEW</span>
         <h3 class="kor-subtitle">우리 두 사람의 이야기</h3>
@@ -204,7 +205,7 @@
     </div>
 </div>
 
-<section class="gallery-section reveal">
+<section class="gallery-section">
     <div class="gallery-header">
         <span class="eng-title">GALLERY</span>
         <h3 class="kor-subtitle">웨딩 갤러리</h3>
@@ -240,7 +241,7 @@
 </section>
 
 
-<section class="calendar-section reveal">
+<section class="calendar-section">
     <div class="calendar-header">
         <span class="cal-year">2026.10.10</span>
         <span class="cal-time">토요일 오후 4시</span>
@@ -322,7 +323,7 @@
 
 
 
-<section class="location-section reveal">
+<section class="location-section">
     <div class="location-header">
         <span class="eng-title">LOCATION</span>
         <h3 class="kor-subtitle">오시는 길</h3>
@@ -362,7 +363,7 @@
         </div>
     </div>
     
- <div class="transport-info reveal">
+ <div class="transport-info">
         
         <div class="trans-row">
             <h5 class="trans-title">지하철</h5>
@@ -423,31 +424,37 @@
             <p class="trans-desc">· 예식 하객 2시간 무료 주차 지원</p>
         </div>
 
-    </div>
+</div>
 </section>
 
-<section class="middle-visual reveal">
+<section class="middle-visual">
     <div class="img-box">
         <img src="./img/td00860009489.jpg" alt="아름다운 우리" class="full-img">
     </div>
 </section>
 
-<section class="guestbook reveal">
+<section class="guestbook">
     <div class="title-area">
         <span class="eng-title">GUESTBOOK</span>
         <h2 class="kor-title">방명록</h2>
     </div>
 
-    <div class="guest-slider-wrap">
-        <div class="guest-slider">
-            <p style="padding: 20px; color: #888; width: 100%; text-align: center;">
-                축하 메시지를 불러오는 중... 💌
-            </p>
+    <div class="guestbook-main-list" id="mainGuestbookList">
+        <div class="loading-msg" style="text-align:center; padding:20px; color:#ccc;">
+            메시지를 불러오는 중... ⏳
         </div>
     </div>
-    <div class="guest-btn-area">
-        <button class="guest-btn" onclick="openGuestbook()">작성하기 ✏️</button>
-        <button class="guest-btn sub" onclick="openAllGuestbook()">전체보기</button>
+
+    <div class="guest-more-area" id="moreBtnArea">
+        <button class="more-view-btn" onclick="showMoreGuestbook()">
+            더보기 <span style="font-size: 10px; margin-top:2px; margin-left: 5px;">∨</span>
+        </button>
+    </div>
+
+    <div class="guest-write-area">
+        <button class="write-floating-btn" onclick="openGuestbook()">
+            작성하기 ✏️
+        </button>
     </div>
 </section>
 
@@ -494,6 +501,40 @@
 
     </div>
 </div>
+
+
+<section class="snap-section" id="snapSection">
+    <div class="title-area snap-anim-title">
+        <span class="eng-title">CAPTURE OUR MOMENTS</span>
+        <h2 class="kor-title">스냅</h2>
+    </div>
+
+    <div class="snap-content">
+        <div class="polaroid-deco">
+            <img src="./img/gallery1.jpg" class="p-img p1 snap-anim-photo">
+            <img src="./img/gallery2.jpg" class="p-img p2 snap-anim-photo">
+            <img src="./img/gallery3.jpg" class="p-img p3 snap-anim-photo">
+        </div>
+
+        <p class="snap-desc snap-anim-text">
+            신랑신부의 행복한 순간을 담아주세요.<br>
+            예식 당일, 아래 버튼을 통해 사진을 올려주세요.<br>
+            많은 참여 부탁드려요! 📷
+        </p>
+
+        <input type="file" id="snapFile" accept="image/*" style="display: none;" onchange="uploadSnapPhoto()">
+        
+        <button class="snap-upload-btn snap-anim-btn" onclick="triggerFileUpload()">
+            사진 업로드
+        </button>
+
+        <p class="snap-date-info snap-anim-text">
+            2026-10-10 예식 당일부터<br>
+            업로드 가능합니다.
+        </p>
+    </div>
+</section>
+
 
 <!--포토모델 팝업-->
 <div id="photoModal" class="modal-overlay" onclick="closePhoto()">
