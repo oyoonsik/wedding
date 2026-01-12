@@ -7,20 +7,42 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* 1. 페이지 로드 완료 시 실행되는 메인 로직 */
 window.onload = () => {
-    
-    // [Part A] 인트로 애니메이션
+  // [Part A] 인트로 애니메이션 (타이핑 효과)
     const masterTl = gsap.timeline();
-    masterTl
-        .to(".hw-wrapper", { width: "auto", duration: 1.5, ease: "steps(45)" }) 
-        .to(".hw-wrapper", { borderRightColor: "transparent" })
-        .to(".hw-date", { opacity: 1, y: -5, duration: 1 }, "-=0.5") 
-        .to("#intro", { delay: 0.2, duration: 0.5, yPercent: -100, ease: "power4.inOut" }) 
-        .from("#wrap", { opacity: 0, y: 50, duration: 0.8, clearProps: "all" }, "-=0.5")
-        .to(".wedding_date", { opacity: 1, y: -10, duration: 0.6 }, "-=0.4")
-        .to(".wedding_names", { opacity: 1, y: -10, duration: 0.6 }, "-=0.7")
-        .to(".img_frame", { opacity: 1, y: -10, duration: 0.8 }, "-=0.7")
-        .to(".location", { opacity: 1, duration: 0.6 }, "-=0.6");
 
+    masterTl
+        // 1. 0.5초 대기 후 타이핑 시작
+        .to(".typing-text", {
+            width: "auto",       // 글자 길이만큼 늘어남
+            duration: 2.0,       // 2초 동안 타이핑
+            ease: "steps(14)",   // 글자 수(14자)만큼 딱딱 끊어서 (타자기 느낌)
+            delay: 0.5
+        })
+        // 2. 타이핑 끝나면 커서 3번 깜빡이고 사라짐
+        .to(".typing-text", {
+            borderRightColor: "transparent",
+            duration: 0.5,
+            repeat: 3,
+            yoyo: true
+        })
+        // 3. 인트로 전체가 부드럽게 사라짐 (페이드 아웃)
+        .to("#intro", {
+            opacity: 0,
+            duration: 1.0,
+            ease: "power2.inOut",
+            onComplete: () => {
+                document.getElementById("intro").style.display = "none";
+            }
+        }, "+=0.3") // 커서 깜빡임 끝나고 0.3초 뒤에 실행
+        
+        // 4. 메인 화면 등장
+        .from("#wrap", { 
+            opacity: 0, 
+            y: 30, 
+            duration: 1.0, 
+            clearProps: "all" 
+        }, "-=0.5");
+        
     // [Part B] 스크롤 애니메이션 (섹션별 분기 처리)
 
     // 1. 일반 섹션 (특수 효과가 있는 섹션들은 모두 제외)
