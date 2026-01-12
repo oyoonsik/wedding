@@ -1,16 +1,178 @@
 /* =========================================================================
-   [통합] 방명록 기능: 작성(POST), 실시간 반영, 배경색 랜덤, 슬라이드/전체보기
+   [통합] 방명록(작성/삭제/리스트) + 스냅 사진(자동압축 업로드)
    ========================================================================= */
 
-// ★ 진짜 주소 유지
-const scriptURL = "https://script.google.com/macros/s/AKfycbwMvXZ7J5HaCwJVLqVCfmC9zShatJI1BNDIRh7Huh4oks2sAeFjMIMBRKXqLFcU7fDHDQ/exec";
+// ★ 진짜 주소 (앱스 스크립트 배포 후 바뀐 주소가 있다면 꼭 확인하세요!)
+const scriptURL = "https://script.google.com/macros/s/AKfycbw1EiaOp2WKKlEJjlYwPiT47Kal80qqd0mRZq26PqZvOcRcxNW9-HiP3k2aGUH8vXj0/exec";
 
-// 1. 페이지가 로드되면 바로 슬라이드 데이터(최신글) 가져오기
+// 전역 변수
+let allGuestbookData = []; 
+let currentIndex = 0;      
+const ITEMS_PER_PAGE = 5;  
+
 window.addEventListener('load', function() {
-    loadSliderData();
+    loadGuestbookData();
 });
 
-// --- [기능 1] 방명록 전송 (작성하기 + 실시간 반영 + 랜덤색) ---
+/* =========================================
+   [기능 1] 스냅 사진 업로드 (자동 리사이징)
+   ========================================= */
+function triggerFileUpload() {
+    document.getElementById('snapFile').click();
+}
+
+function uploadSnapPhoto() {
+    const fileInput = document.getElementById('snapFile');
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const btn = document.querySelector('.snap-upload-btn');
+    const originalText = btn.innerText;
+    btn.innerText = "압축 및 업로드 중... ⏳";
+    btn.disabled = true;
+
+    // 이미지 압축 (최대 너비 1280px, 품질 0.7)
+    resizeImage(file, 1280, 0.7, function(base64Data) {
+        // 압축된 데이터로 전송 시작
+        const payload = {
+            action: 'upload',
+            fileName: file.name,
+            mimeType: 'image/jpeg', // 압축하면 무조건 jpg가 됨
+            fileData: base64Data
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            mode: 'no-cors'
+        })
+        .then(response => {
+            alert("사진이 성공적으로 전달되었습니다! 📸");
+            btn.innerText = "업로드 완료!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                fileInput.value = ''; 
+            }, 2000);
+        })
+        .catch(error => {
+            alert("업로드 실패 😭 다시 시도해주세요.");
+            console.error(error);
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    });
+}
+
+// [헬퍼 함수] 이미지를 캔버스에 그려서 리사이징하는 마법의 코드
+function resizeImage(file, maxWidth, quality, callback) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            // 비율 유지하면서 크기 계산
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth) {
+                height = Math.round(height * (maxWidth / width));
+                width = maxWidth;
+            }
+
+            // 캔버스에 그리기
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            // 압축된 Base64 문자열 뽑기 (앞에 'data:image/jpeg;base64,' 제거)
+            const dataUrl = canvas.toDataURL('image/jpeg', quality);
+            const base64Data = dataUrl.split(',')[1];
+            
+            callback(base64Data);
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+/* =========================================
+   [기능 2] 방명록 관련 (기존 코드 유지)
+   ========================================= */
+
+function loadGuestbookData() {
+    const listContainer = document.getElementById('mainGuestbookList');
+    const moreBtnArea = document.getElementById('moreBtnArea');
+
+    fetch(scriptURL)
+    .then(response => response.json())
+    .then(data => {
+        allGuestbookData = data;
+        currentIndex = 0;
+        listContainer.innerHTML = '';
+
+        if (allGuestbookData.length === 0) {
+            listContainer.innerHTML = '<div style="text-align:center; color:#999; padding:30px;">아직 작성된 글이 없습니다.<br>첫 번째 주인공이 되어주세요! ✏️</div>';
+            if(moreBtnArea) moreBtnArea.classList.add('hidden');
+            return;
+        }
+        showMoreGuestbook();
+    })
+    .catch(error => {
+        // console.error('로드 실패:', error);
+        // listContainer.innerHTML = '...';
+    });
+}
+
+function showMoreGuestbook() {
+    const listContainer = document.getElementById('mainGuestbookList');
+    const moreBtnArea = document.getElementById('moreBtnArea');
+    const nextIndex = currentIndex + ITEMS_PER_PAGE;
+    const itemsToShow = allGuestbookData.slice(currentIndex, nextIndex);
+    
+    let html = '';
+    itemsToShow.forEach(item => {
+        const safeName = escapeHtml(item.name);
+        const safeMsg = escapeHtml(item.message);
+        html += `
+        <div class="main-guest-card">
+            <div class="main-card-header">
+                <span class="main-card-name">${safeName}</span>
+                <button class="delete-btn" onclick="deleteMessage('${safeName}', '${safeMsg}')">✕</button>
+            </div>
+            <div class="main-card-msg">${safeMsg}</div>
+        </div>
+        `;
+    });
+    listContainer.insertAdjacentHTML('beforeend', html);
+    currentIndex = nextIndex;
+
+    if (moreBtnArea) {
+        if (currentIndex >= allGuestbookData.length) {
+            moreBtnArea.classList.add('hidden');
+        } else {
+            moreBtnArea.classList.remove('hidden');
+        }
+    }
+}
+
+function deleteMessage(name, message) {
+    const password = prompt("작성할 때 입력한 비밀번호를 입력해주세요.");
+    if (!password) return;
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'delete', name: name, password: password, message: message }),
+        mode: 'no-cors'
+    })
+    .then(() => {
+        alert("삭제 처리되었습니다. (비밀번호가 맞다면 삭제됨)");
+        loadGuestbookData();
+    })
+    .catch(() => alert("오류가 발생했습니다."));
+}
+
 function submitGuestbook() {
     const name = document.getElementById('gName').value;
     const pw = document.getElementById('gPw').value;
@@ -31,151 +193,26 @@ function submitGuestbook() {
         body: JSON.stringify({ name: name, password: pw, message: msg }),
         mode: 'no-cors'
     })
-    .then(response => {
-        alert("소중한 축하 메시지가 전달되었습니다! 💌");
-        
-        // --- [실시간 화면 추가] ---
-        const sliderContainer = document.querySelector('.guest-slider');
-        
-        if (sliderContainer) {
-            const icon = getRandomIcon();   // 랜덤 아이콘
-            const color = getRandomColor(); // ★ 랜덤 배경색
-            
-            // 새 카드 HTML (배경색 적용)
-            const newCardHTML = `
-                <div class="guest-card" style="background-color: ${color}; animation: fadeIn 1s;">
-                    <span class="card-flower">${icon}</span>
-                    <p class="card-msg">${escapeHtml(msg)}</p>
-                    <span class="card-name">- ${escapeHtml(name)} -</span>
-                </div>
-            `;
-            
-            sliderContainer.insertAdjacentHTML('afterbegin', newCardHTML);
-        }
-
-        // 초기화
+    .then(() => {
+        alert("메시지가 등록되었습니다! 💌");
         document.getElementById('gName').value = '';
         document.getElementById('gPw').value = '';
         document.getElementById('gMsg').value = '';
         closeGuestbook();
-        
+        loadGuestbookData();
         btn.innerHTML = originalText;
         btn.disabled = false;
     })
     .catch(error => {
-        console.error('Error!', error.message);
-        alert("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        alert("전송 실패. 다시 시도해 주세요.");
         btn.innerHTML = originalText;
         btn.disabled = false;
     });
 }
 
-// --- [기능 2] 메인 슬라이드 데이터 불러오기 (랜덤색 적용) ---
-function loadSliderData() {
-    const sliderContainer = document.querySelector('.guest-slider');
-    
-    fetch(scriptURL)
-    .then(response => response.json())
-    .then(data => {
-        if (data.length === 0) return;
-
-        let html = '';
-        
-        data.slice(0, 10).forEach(item => {
-            const icon = getRandomIcon();
-            const color = getRandomColor(); // ★ 저장된 글들도 랜덤색 적용
-            
-            html += `
-            <div class="guest-card" style="background-color: ${color};">
-                <span class="card-flower">${icon}</span>
-                <p class="card-msg">${escapeHtml(item.message)}</p>
-                <span class="card-name">- ${escapeHtml(item.name)} -</span>
-            </div>
-            `;
-        });
-
-        sliderContainer.innerHTML = html;
-    })
-    .catch(error => {
-        console.error('슬라이드 로드 실패:', error);
-    });
-}
-
-// --- [기능 3] 전체보기 팝업 (여기는 깔끔하게 흰색 유지) ---
-function openAllGuestbook() {
-    const modal = document.getElementById('allGuestbookModal');
-    modal.classList.add('active');
-    loadListData(); 
-}
-
-function closeAllGuestbook() {
-    document.getElementById('allGuestbookModal').classList.remove('active');
-}
-
-function loadListData() {
-    const listArea = document.getElementById('guestbookListArea');
-    listArea.innerHTML = '<div class="loading-msg">소중한 글들을 불러오는 중... ⏳</div>';
-
-    fetch(scriptURL)
-    .then(response => response.json())
-    .then(data => {
-        if (data.length === 0) {
-            listArea.innerHTML = '<div class="loading-msg">아직 작성된 글이 없습니다.</div>';
-            return;
-        }
-
-        let html = '';
-        data.forEach(item => {
-            html += `
-                <div class="guest-list-item">
-                    <div class="list-top-row">
-                        <span class="list-name">${escapeHtml(item.name)}</span>
-                        <button class="list-del-btn" onclick="alert('삭제 기능은 추후 지원됩니다!')">✕</button>
-                    </div>
-                    <div class="list-msg">${escapeHtml(item.message)}</div>
-                </div>
-            `;
-        });
-        listArea.innerHTML = html;
-    })
-    .catch(error => {
-        listArea.innerHTML = '<div class="loading-msg">불러오기 실패 😭</div>';
-    });
-}
-
-// --- [기능 4] 유틸리티 (랜덤 색상 추가됨) ---
-
-function openGuestbook() {
-    document.getElementById('guestbookModal').classList.add('active');
-}
-function closeGuestbook() {
-    document.getElementById('guestbookModal').classList.remove('active');
-}
-
+function openGuestbook() { document.getElementById('guestbookModal').classList.add('active'); }
+function closeGuestbook() { document.getElementById('guestbookModal').classList.remove('active'); }
 function escapeHtml(text) {
     if (text == null) return "";
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-function getRandomIcon() {
-    const icons = ['🌸', '💐', '🌷', '🌹', '🌻', '🌺', '💖', '💍'];
-    return icons[Math.floor(Math.random() * icons.length)];
-}
-
-// ★ [신규] 파스텔 톤 랜덤 색상 추출기
-function getRandomColor() {
-    const colors = [
-        '#FFF5F5', // 연한 핑크
-        '#F5F9FF', // 연한 하늘
-        '#FCFFF5', // 연한 연두
-        '#FFFBF5', // 연한 노랑
-        '#F5F0FF', // 연한 보라
-        '#FFFFFF'  // 기본 화이트
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/\n/g, "<br>");
 }

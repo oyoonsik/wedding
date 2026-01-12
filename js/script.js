@@ -1,92 +1,184 @@
-/* =========================================
-   1. GSAP 애니메이션 (페이지 로드 후 실행)
-   ========================================= */
+/* =========================================================================
+   [통합] UI 및 애니메이션 스크립트 (윤식♥혜미 결혼식)
+   ========================================================================= */
+
+// GSAP 플러그인 등록
 gsap.registerPlugin(ScrollTrigger);
 
+/* 1. 페이지 로드 완료 시 실행되는 메인 로직 */
 window.onload = () => {
-    // 전체 타임라인 생성
+    
+    // [Part A] 인트로 애니메이션
     const masterTl = gsap.timeline();
-
-    // [Step 1] 인트로 애니메이션
     masterTl
-        .from(".intro-text", {
-            opacity: 0,
-            y: 30,
-            duration: 1.5,
-            ease: "power3.out"
-        })
-        .to("#intro", {
-            delay: 0.5,
-            duration: 0.8,
-            yPercent: -100, // 인트로가 위로 슬라이드
-            ease: "power4.inOut"
-        })
-        // [Step 2] 메인 비주얼 (#wrap) 등장
-        .from("#wrap", {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            clearProps: "all" 
-        }, "-=0.8")
-        // [Step 3] 메인 내부 요소들 순차적 등장
+        .to(".hw-wrapper", { width: "auto", duration: 1.5, ease: "steps(45)" }) 
+        .to(".hw-wrapper", { borderRightColor: "transparent" })
+        .to(".hw-date", { opacity: 1, y: -5, duration: 1 }, "-=0.5") 
+        .to("#intro", { delay: 0.2, duration: 0.5, yPercent: -100, ease: "power4.inOut" }) 
+        .from("#wrap", { opacity: 0, y: 50, duration: 0.8, clearProps: "all" }, "-=0.5")
         .to(".wedding_date", { opacity: 1, y: -10, duration: 0.6 }, "-=0.4")
         .to(".wedding_names", { opacity: 1, y: -10, duration: 0.6 }, "-=0.7")
         .to(".img_frame", { opacity: 1, y: -10, duration: 0.8 }, "-=0.7")
         .to(".location", { opacity: 1, duration: 0.6 }, "-=0.6");
 
-    // [Step 4] 스크롤 트리거 (하단 섹션 애니메이션)
-    const revealEls = document.querySelectorAll('.reveal:not(.main_visual .reveal)');
-    
+    // [Part B] 스크롤 애니메이션 (섹션별 분기 처리)
+
+    // 1. 일반 섹션 (특수 효과가 있는 섹션들은 모두 제외)
+    // -> 제외 목록에 .middle-visual 추가됨
+    const revealEls = document.querySelectorAll('.reveal:not(.main_visual .reveal):not(.greeting):not(.family-section):not(.interview-section):not(.gallery-section):not(.calendar-section):not(.location-section):not(.guestbook):not(.snap-section):not(.middle-visual)');
     revealEls.forEach((el) => {
         gsap.to(el, {
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%",
-                toggleActions: "play none none none"
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out"
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
+            opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
         });
     });
+
+    // 2. 인사말 (Greeting)
+    if(document.querySelector('.greeting')) {
+        gsap.from(".greeting > *", {
+            scrollTrigger: { trigger: ".greeting", start: "top 75%", toggleActions: "play none none reverse" },
+            y: 60, opacity: 0, duration: 1.5, stagger: 0.3, ease: "power3.out"
+        });
+    }
+
+    // 3. 가족 (Family)
+    if(document.querySelector('.family-section')) {
+        gsap.from(".family-section > *", {
+            scrollTrigger: { trigger: ".family-section", start: "top 80%", toggleActions: "play none none reverse" },
+            y: 50, opacity: 0, duration: 1.2, stagger: 0.3, ease: "power3.out"
+        });
+    }
+
+    // 4. 인터뷰 (Interview)
+    if(document.querySelector('.interview-section')) {
+        const interviewTl = gsap.timeline({
+            scrollTrigger: { trigger: ".interview-section", start: "top 75%", toggleActions: "play none none reverse" }
+        });
+        interviewTl
+            .from(".interview-header > *", { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" })
+            .from(".photo-box", { y: 50, opacity: 0, duration: 0.8, stagger: 0.3, ease: "back.out(1.2)" }, "-=0.4")
+            .from(".interview-btn", { scale: 0.8, opacity: 0, duration: 0.5, ease: "elastic.out(1, 0.6)" }, "-=0.2");
+    }
+
+    // 5. 갤러리 (Gallery)
+    if(document.querySelector('.gallery-section')) {
+        const galleryTl = gsap.timeline({
+            scrollTrigger: { trigger: ".gallery-section", start: "top 75%", toggleActions: "play none none reverse" }
+        });
+        galleryTl
+            .from(".gallery-header > *", { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" })
+            .from(".gallery-item", { 
+                scale: 0.8, opacity: 0, duration: 0.6, 
+                stagger: { amount: 0.6, grid: "auto", from: "center" }, 
+                ease: "back.out(1.2)" 
+            }, "-=0.4")
+            .from(".more-btn-wrap", { y: 20, opacity: 0, duration: 0.5 }, "-=0.2");
+    }
+
+    // 6. 캘린더 (Calendar)
+    if(document.querySelector('.calendar-section')) {
+        const calTl = gsap.timeline({
+            scrollTrigger: { trigger: ".calendar-section", start: "top 75%", toggleActions: "play none none reverse" }
+        });
+        calTl
+            .from(".calendar-header", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" })
+            .from(".calendar-wrap", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+            .from(".countdown-area", { scale: 0.9, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4");
+    }
+
+    // 7. 오시는 길 (Location)
+    if(document.querySelector('.location-section')) {
+        const locTl = gsap.timeline({
+            scrollTrigger: { trigger: ".location-section", start: "top 75%", toggleActions: "play none none reverse" }
+        });
+        locTl
+            .from(".location-header", { y: 30, opacity: 0, duration: 0.8 })
+            .from(".venue-info > *", { y: 20, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.6")
+            .from("#map", { scale: 0.95, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.4")
+            .from(".static-map-btn, .navi-section", { y: 30, opacity: 0, duration: 0.6, stagger: 0.2 }, "-=0.4")
+            .from(".trans-row", { x: -20, opacity: 0, duration: 0.6, stagger: 0.2 }, "-=0.2");
+    }
+
+    // 8. [추가] 중간 비주얼 (Middle Visual) - 웅장한 줌아웃 등장
+    if(document.querySelector('.middle-visual')) {
+        gsap.from(".middle-visual .img-box", {
+            scrollTrigger: {
+                trigger: ".middle-visual",
+                start: "top 80%",           // 화면 80% 지점에서 시작
+                toggleActions: "play none none reverse"
+            },
+            scale: 1.1,         // 1.1배 크기에서 시작해서
+            opacity: 0,         // 투명하다가
+            duration: 1.5,      // 1.5초 동안 서서히
+            ease: "power2.out"  // 원래 크기(1.0)로 돌아옴 (우아한 느낌)
+        });
+    }
+
+    // 9. 방명록 (Guestbook)
+    if(document.querySelector('.guestbook')) {
+        const gbTl = gsap.timeline({
+            scrollTrigger: { trigger: ".guestbook", start: "top 75%", toggleActions: "play none none reverse" }
+        });
+        gbTl
+            .from(".guestbook .title-area", { y: 30, opacity: 0, duration: 0.8 })
+            .from(".guestbook-main-list", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+            .from(".guest-more-area", { opacity: 0, duration: 0.5 }, "-=0.4")
+            .from(".write-floating-btn", { scale: 0, opacity: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }, "-=0.2");
+    }
+
+    // 10. 스냅 (Snap) - 버튼 안 보임 해결 버전
+        if(document.querySelector('.snap-section')) {
+            const snapTl = gsap.timeline({
+                scrollTrigger: { 
+                    trigger: ".snap-section", 
+                    start: "top 90%",           // [수정] 화면 하단에 닿자마자 시작 (더 빨리 뜸)
+                    toggleActions: "play none none none" // [수정] 한 번 뜨면 절대 다시 안 사라짐
+                }
+            });
+            snapTl
+                .from(".snap-anim-title", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" })
+                .from(".snap-anim-photo", { 
+                    y: 60, opacity: 0, duration: 0.8, stagger: 0.15, 
+                    ease: "back.out(1.7)",
+                    clearProps: "all" // [수정] 애니메이션 끝나면 스타일 찌꺼기 제거 (안전장치)
+                }, "-=0.5") 
+                .from(".snap-anim-text", { y: 20, opacity: 0, duration: 0.6 }, "-=0.4")
+                .from(".snap-anim-btn", { 
+                    scale: 0.3, 
+                    opacity: 0, 
+                    duration: 0.5, 
+                    ease: "elastic.out(1, 0.5)",
+                    clearProps: "all" // [수정] 버튼 애니메이션 끝나면 강제로 투명도 100% 고정
+                }, "-=0.2");
+        }
+    // [Part C] BGM 초기화 실행
+    initBGM();
 };
 
+
 /* =========================================
-   2. 배경음악 컨트롤 (BGM)
+   2. 기능 함수들 (팝업, 지도, BGM 등)
    ========================================= */
-document.addEventListener('DOMContentLoaded', () => {
+
+// [BGM]
+function initBGM() {
     const bgm = document.getElementById('bgm');
     const musicBtn = document.getElementById('music-control');
-
-    // 음악 버튼 클릭 시 재생/일시정지 토글
     if (musicBtn && bgm) {
         musicBtn.addEventListener('click', () => {
-            if (bgm.paused) {
-                bgm.play();
-                musicBtn.classList.add('playing');
-            } else {
-                bgm.pause();
-                musicBtn.classList.remove('playing');
-            }
+            if (bgm.paused) { bgm.play(); musicBtn.classList.add('playing'); } 
+            else { bgm.pause(); musicBtn.classList.remove('playing'); }
         });
-
-        // 자동 재생 시도 (브라우저 정책 우회: 첫 클릭 시 재생)
         window.addEventListener('click', () => {
-            if (bgm.paused && !musicBtn.classList.contains('manually-paused')) {
-                bgm.play();
-                musicBtn.classList.add('playing');
-            }
+            if (bgm.paused) { bgm.play(); musicBtn.classList.add('playing'); }
         }, { once: true });
     }
-});
+}
 
-/* =========================================
-   3. 연락처 팝업 기능
-   ========================================= */
+// [연락처]
 const contactData = {
     groom: [
-        { rel: "신랑", name: "오윤식", tel: "010-9961--6199" },
+        { rel: "신랑", name: "오윤식", tel: "010-9961-6199" },
         { rel: "신랑 아버지", name: "오영철", tel: "010-3782-3442" },
         { rel: "신랑 어머니", name: "이금하", tel: "010-5000-1320" }
     ],
@@ -96,91 +188,37 @@ const contactData = {
         { rel: "신부 어머니", name: "장환순", tel: "010-1111-1111" }
     ]
 };
-
 function openContact(type) {
     const list = document.getElementById('contactList');
-    list.innerHTML = ''; // 초기화
+    list.innerHTML = ''; 
     document.getElementById('modalTitle').innerText = type === 'groom' ? '신랑측 연락처' : '신부측 연락처';
-
     contactData[type].forEach(person => {
         list.innerHTML += `
             <div class="contact-item-box">
-                <div class="contact-info-text">
-                    <span class="info-rel">${person.rel}</span>
-                    <span class="info-name">${person.name}</span>
-                </div>
-                <div class="contact-actions">
-                    <a href="tel:${person.tel}" class="action-link">📞</a>
-                    <a href="sms:${person.tel}" class="action-link">✉️</a>
-                </div>
-            </div>
-        `;
+                <div class="contact-info-text"><span class="info-rel">${person.rel}</span><span class="info-name">${person.name}</span></div>
+                <div class="contact-actions"><a href="tel:${person.tel}" class="action-link">📞</a><a href="sms:${person.tel}" class="action-link">✉️</a></div>
+            </div>`;
     });
-
-    const modal = document.getElementById('contactModal');
-    modal.classList.add('active');
+    document.getElementById('contactModal').classList.add('active');
 }
+function closeContact() { document.getElementById('contactModal').classList.remove('active'); }
 
-function closeContact() {
-    document.getElementById('contactModal').classList.remove('active');
-}
+// [인터뷰]
+function openInterview() { document.getElementById('interviewModal').classList.add('active'); }
+function closeInterview() { document.getElementById('interviewModal').classList.remove('active'); }
 
-/* =========================================
-   4. 인터뷰 팝업 기능
-   ========================================= */
-function openInterview() {
-    document.getElementById('interviewModal').classList.add('active');
-}
-
-function closeInterview() {
-    document.getElementById('interviewModal').classList.remove('active');
-}
-
-/* =========================================
-   5. 갤러리 기능 (더보기 & 확대보기)
-   ========================================= */
+// [갤러리]
 function expandGallery() {
-    const grid = document.getElementById('galleryGrid');
-    const btnWrap = document.getElementById('moreBtnWrap');
-    
-    // 높이 제한 해제
-    grid.classList.add('expanded');
-    // 버튼 숨김
-    btnWrap.classList.add('hidden');
+    document.getElementById('galleryGrid').classList.add('expanded');
+    document.getElementById('moreBtnWrap').classList.add('hidden');
 }
-
 function viewPhoto(img) {
     const modal = document.getElementById('photoModal');
-    const modalImg = document.getElementById('modalImg');
-    modalImg.src = img.src;
+    document.getElementById('modalImg').src = img.src;
     modal.classList.add('active');
 }
+function closePhoto() { document.getElementById('photoModal').classList.remove('active'); }
 
-function closePhoto() {
-    document.getElementById('photoModal').classList.remove('active');
-}
-
-/* =========================================
-   6. 약도 팝업 기능
-   ========================================= */
-function openMapModal() {
-    document.getElementById('mapModal').classList.add('active');
-}
-
-function closeMapModal() {
-    document.getElementById('mapModal').classList.remove('active');
-}
-
-
-/* =========================================
-   7. 방명록 작성 팝업 기능
-   ========================================= */
-function openGuestbook() {
-    const modal = document.getElementById('guestbookModal');
-    modal.classList.add('active'); // 팝업 열기
-}
-
-function closeGuestbook() {
-    const modal = document.getElementById('guestbookModal');
-    modal.classList.remove('active'); // 팝업 닫기
-}
+// [약도]
+function openMapModal() { document.getElementById('mapModal').classList.add('active'); }
+function closeMapModal() { document.getElementById('mapModal').classList.remove('active'); }
