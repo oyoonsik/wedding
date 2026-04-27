@@ -1,20 +1,672 @@
-<?php
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="윤식♥혜미 결혼합니다">
+    <meta property="og:description" content="저희... 진짜 갑니다! 10월 10일. L65호텔웨딩컨벤션에서 저희 두 사람의 결혼식이 있습니다.">
+    <meta property="og:image" content="https://oyoonsik.github.io/wedding/img/gallery2.jpg">
+    <title>윤식 ♥ 혜미 결혼합니다.</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' d='M50 20c5-15 25-15 25 0 0 10-15 20-25 30C40 40 25 30 25 20c0-15 20-15 25 0z'/%3E%3Cpath fill='%23ffffff' d='M80 50c15 5 15 25 0 25-10 0-20-15-30-25 10-10 20-25 30-25c15 0 15 20 0 25z'/%3E%3Cpath fill='%23ffffff' d='M50 80c-5 15-25 15-25 0 0-10 15-20 25-30 10 10 25 20 25 30 0 15-20 15-25 0z'/%3E%3Cpath fill='%23ffffff' d='M20 50c-15-5-15-25 0-25 10 0 20 15 30 25-10 10-20 25-30 25-15 0-15-20 0-25z'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23ffdde1'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-// 모바일 체크
-$mobileArray = array("iphone", "lgtelecom", "skt", "mobile", "samsung", "nokia", "blackberry", "android", "sony", "phone");
-$checkCount = 0;
-for($num = 0; $num < sizeof($mobileArray); $num++) {
-	if(preg_match("/$mobileArray[$num]/", strtolower($_SERVER['HTTP_USER_AGENT']))) {
-	    $checkCount++;
-        break;
-   	}
-}
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"></script>
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw"></script>
+    <script>
+    window.addEventListener('load', function () {
+        if (!window.naver || !naver.maps) {
+            console.error('네이버 지도 API 로드 실패');
+            return;
+        }
 
-if ($checkCount >= 1) {
-	include 'mobile.html';
-} else {
-	include 'pc.html';
-}
+        const map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.58055, 127.0479),
+            zoom: 16
+        });
+
+        new naver.maps.Marker({
+            position: new naver.maps.LatLng(37.58055, 127.0479),
+            map: map
+        });
+    });
+    </script>
+
+</head>
+<body>
+
+<div id="intro" class="intro-overlay">
+    <div class="intro-bg" style="background-image: url('./img/gallery2.jpg');"></div>
+    
+    <div class="intro-content">
+        <div class="heart-beat">♥</div>
+        
+        <div class="typing-wrapper">
+            <span class="typing-text">오윤식, 박혜미 결혼합니다.</span>
+        </div>
+
+        <div class="intro-details">
+            2026. 10. 10. 토요일<br>
+            L65호텔웨딩컨벤션
+        </div>
+    </div>
+</div>
+<div id="wrap">
+
+    <audio id="bgm" loop>
+        <source src="./music/wedding-bgm1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" class="music-btn">
+        <span class="icon-music">♪</span>
+        <div class="music-bar-wrap">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <section class="main_visual">
+        <div class="img_frame">
+            <img src="./img/sample01.jpg" alt="Main Photo">
+        </div>
+        <canvas id="confetti-canvas"></canvas>
+        <span class="corner-text top-left">OH</span>
+        <span class="corner-text top-right">YOONSIK</span>
+        <span class="corner-text bottom-left">PARK</span>
+        <span class="corner-text bottom-right">HYEMI</span>
+
+      <div class="poster-date">
+            <span class="date-num">10</span>
+            <span class="date-num">10</span>
+            <span class="year-num">2026</span>
+    </div>
+    </section>
+
+   <section class="greeting greeting">
+        <div class="title-area">
+            <span class="eng-title">SOLD OUT</span>
+            <h2 class="kor-title">저희, 진짜 갑니다!</h2>
+        </div>
+        
+        <div class="greeting_text">
+            오윤식과 박혜미가 만나<br>
+            평생 서로의 족쇄... 아니,<br>
+            반려자가 되기로 약속했습니다.<br><br>
+
+            반품과 환불은 불가하오니<br>
+            오셔서 증인이 되어주세요.<br><br>
+
+            재밌게 잘 살겠습니다.<br>
+            오셔서 맛있는 밥 드시고 가세요!
+        </div>
+    </section>
+
+    <section class="family-section" id="family">
+        <div class="family-photo">
+            <img src="img/sample03.jpg" alt="신랑 신부">
+        </div>
+
+        <div class="family-row">
+            <div class="family-text">
+                <span class="p-names">오영철 · 이금하</span>
+                <span class="p-rel">의 장남</span>
+                <span class="m-name">오윤식</span>
+            </div>
+            <button class="round-contact-btn" onclick="openContact('groom')">연락하기</button>
+        </div>
+
+        <div class="family-row">
+            <div class="family-text">
+                <span class="p-names">박호철 · 장환순</span>
+                <span class="p-rel">의 장녀</span>
+                <span class="m-name">박혜미</span>
+            </div>
+            <button class="round-contact-btn" onclick="openContact('bride')">연락하기</button>
+        </div>
+    </section>
+
+    <div id="contactModal" class="modal-overlay" onclick="closeContact()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span id="modalTitle">연락하기</span>
+                <button class="close-x" onclick="closeContact()">✕</button>
+            </div>
+            <div id="contactList" class="contact-list">
+                </div>
+        </div>
+    </div>
+
+    <section class="interview-section">
+    <div class="interview-header">
+        <span class="eng-title">INTERVIEW</span>
+        <h3 class="kor-subtitle">우리 두 사람의 이야기</h3>
+        <p class="desc-text">
+            결혼을 앞두고 저희 두 사람의<br>
+            인터뷰를 준비했습니다.
+        </p>
+    </div>
+
+    <div class="interview-photos">
+        <div class="photo-box">
+            <img src="img/groom_interview.jpg" alt="신랑">
+        </div>
+        <div class="photo-box">
+            <img src="img/bride_interview.jpg" alt="신부">
+        </div>
+    </div>
+
+    <button class="interview-btn" onclick="openInterview()">
+        <span class="btn-icon">✉</span> 신랑 & 신부의 인터뷰 읽어보기
+    </button>
+</section>
+
+<div id="interviewModal" class="modal-overlay" onclick="closeInterview()">
+    <div class="modal-content interview-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <span class="modal-title">INTERVIEW</span>
+            <button class="close-x" onclick="closeInterview()">✕</button>
+        </div>
+        
+       <div class="interview-body">
+            <div class="qna-box">
+                <p class="q">Q1. 결혼을 앞둔 소감</p>
+                
+                <div class="answer-block">
+                    <p class="speaker">🤵 신랑 오윤식</p>
+                    <p class="a">
+                        드디어 장가갑니다! 😄 먼저 인생에서 가장 큰 결심을 할 수 있게 해준 예비 신부에게 너무 고맙습니다.<br><br>
+                        가족이라는 단어를 함께 한다는 것은 정말 설레고 아름다운 일이지만 그만큼 책임감을 더 갖고 살아야겠다고 다짐했습니다.<br><br>
+                        저희 부부가 한걸음 한걸음 성장해 나가는 모습을 지켜봐주시고 응원해주세요💛💛
+                    </p>
+                </div>
+
+                <div class="answer-block">
+                    <p class="speaker">👰‍♀️ 신부 박혜미</p>
+                    <p class="a">
+                        오래된 연인에서 이제는 서로의 부부가 되기로 약속 했습니다!<br><br>
+                        아직은 남자친구라는 말이 더 익숙하지만 그동안 제 옆을 든든하게 지켜주면서 큰 행복을 준, <br>
+                        이제는 저의 평생의 반려자가 된 신랑 에게도 좋은 아내로서 더욱 배려하며 큰 힘이 되는 존재로 살겠습니다🥰
+                    </p>
+                </div>
+            </div>
+
+            <div class="qna-box">
+                <p class="q">Q2. 결혼을 결심한 계기는?</p>
+                <div class="answer-block">
+                    <p class="a">
+                        함께 라면 그 어떤 어려움이 있더라도 잘 헤쳐나갈 수 있다고 자신하게 되었습니다.<br><br>
+                        함께 시간을 보내면서 서로에 대한 믿음과 애정이 쌓이게 되고 이러한 행동들이 몸에 배어서<br>
+                        서로에게 👩‍❤️‍👨좋은 엄마, 🤵좋은 아빠가 될 수 있다는 확신이 들어 결혼을 결심하게 되었습니다😄
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="gallery-section">
+    <div class="gallery-header">
+        <span class="eng-title">GALLERY</span>
+        <h3 class="kor-subtitle">웨딩 갤러리</h3>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item tall">
+            <img src="img/gallery1.jpg" alt="웨딩사진1" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery2.jpg" alt="웨딩사진2" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery3.jpg" alt="웨딩사진3" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery4.jpg" alt="웨딩사진4" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery5.jpg" alt="웨딩사진5" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery6.jpg" alt="웨딩사진6" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery7.jpg" alt="웨딩사진7" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery8.jpg" alt="웨딩사진8" onclick="viewPhoto(this)">
+        </div>
+        <div class="gallery-item">
+            <img src="img/gallery9.jpg" alt="웨딩사진9" onclick="viewPhoto(this)">
+        </div>
+    </div>
 
 
-?>
+    <div class="more-btn-wrap" id="moreBtnWrap">
+        <button class="gallery-more-btn" onclick="expandGallery()">
+            더보기 <span class="arrow-down">∨</span>
+        </button>
+    </div>
+</section>
+
+
+<section class="calendar-section">
+    <div class="calendar-header">
+        <span class="cal-year">2026.10.10</span>
+        <span class="cal-time">토요일 오후 4시</span>
+    </div>
+
+    <div class="calendar-wrap">
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th class="sun">일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td> <td></td> <td></td> <td></td> <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td class="sun">4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td class="holliday">9</td> <td class="d-day"><span>10</span></td> </tr>
+                <tr>
+                    <td class="sun">11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                </tr>
+                <tr>
+                    <td class="sun">18</td>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td class="sun">25</td>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>31</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="countdown-area">
+        <div class="timer-box">
+            <div class="time-item"><span id="days">0</span><span class="label">DAYS</span></div>
+            <div class="colon">:</div>
+            <div class="time-item"><span id="hours">00</span><span class="label">HOUR</span></div>
+            <div class="colon">:</div>
+            <div class="time-item"><span id="mins">00</span><span class="label">MIN</span></div>
+            <div class="colon">:</div>
+            <div class="time-item"><span id="secs">00</span><span class="label">SEC</span></div>
+        </div>
+        <p class="d-day-text">
+            윤식, 혜미의 결혼식이 <span id="d-day-count" class="accent-text"></span>일 남았습니다.
+        </p>
+    </div>
+</section>
+
+
+<section class="location-section">
+    <div class="location-header">
+        <span class="eng-title">LOCATION</span>
+        <h3 class="kor-subtitle">오시는 길</h3>
+    </div>
+
+    <div class="venue-info">
+        <h4 class="venue-name">L65호텔웨딩컨벤션, 6층 가든홀</h4>
+        <p class="venue-addr">서울 동대문구 왕산로 200</p>
+        <p class="venue-tel">Tel. 02-2184-4500</p>
+    </div>
+
+   <div id="map" style="width:100%; height:300px; margin: 30px auto;"></div>
+
+    <button class="static-map-btn" onclick="openMapModal()">
+        <span class="map-icon">🗺</span> 약도 이미지 보기
+    </button>
+
+    <div class="navi-section">
+        <h5 class="navi-title">내비게이션</h5>
+        <p class="navi-desc">원하시는 앱을 선택하시면 길안내가 시작됩니다.</p>
+        
+        <div class="navi-grid">
+            <a href="https://map.naver.com/v5/search/L65호텔웨딩컨벤션" target="_blank" class="navi-btn">
+                <img src="img/ico_nav03.png" alt="네이버지도" class="nav-icon-img">
+                네이버지도
+            </a>
+            
+            <a href="tmap://search?name=L65호텔웨딩컨벤션" target="_blank" class="navi-btn">
+                <img src="img/ico_nav02.png" alt="티맵" class="nav-icon-img">
+                티맵
+            </a>
+            
+            <a href="https://map.kakao.com/link/search/L65호텔웨딩컨벤션" target="_blank" class="navi-btn">
+                <img src="img/ico_nav01.png" alt="카카오내비" class="nav-icon-img">
+                카카오내비
+            </a>
+        </div>
+    </div>
+    
+ <div class="transport-info">
+        
+        <div class="trans-row">
+            <h5 class="trans-title">지하철</h5>
+            <ul class="trans-list">
+                <li>
+                    <span class="dot line-1">●</span> 1호선 청량리역 5번 출구 (바로 앞)
+                </li>
+                <li>
+                    <span class="dot line-kj">●</span> 경의중앙·경춘선 청량리역 1번 출구
+                </li>
+                <li>
+                    <span class="dot line-bun">●</span> 수인분당선 청량리역 1번 출구
+                </li>
+            </ul>
+            <p class="trans-desc">· 랜드마크타워 건물 진입 후 6층으로 오세요.</p>
+        </div>
+
+        <div class="trans-divider"></div>
+
+        <div class="trans-row">
+            <h5 class="trans-title">버스</h5>
+            <p class="trans-sub-title">청량리역 환승센터 하차</p>
+            <ul class="trans-list">
+                <li>
+                    <span class="dot bus-blue">●</span> 간선 : 105, 120, 147, 202, 260 외 다수
+                </li>
+                <li>
+                    <span class="dot bus-green">●</span> 지선 : 1222, 1224, 1227, 2115, 3220
+                </li>
+                <li>
+                    <span class="dot bus-red">●</span> 직행 : 1330-2, 1330-4, 3200, 8005
+                </li>
+            </ul>
+        </div>
+
+        <div class="trans-divider"></div>
+
+        <div class="trans-row">
+            <h5 class="trans-title">자가용</h5>
+            <p class="trans-text">
+                <b>내비게이션 검색</b><br>
+                "L65호텔웨딩컨벤션" 또는 "청량리역 5번출구"
+            </p>
+            <p class="trans-desc" style="margin-top: 8px;">
+                · 도로명 : 서울 동대문구 왕산로 200<br>
+                · 지번 : 서울 동대문구 전농동 620-69
+            </p>
+        </div>
+
+        <div class="trans-divider"></div>
+
+        <div class="trans-row">
+            <h5 class="trans-title">주차안내</h5>
+            <p class="trans-text">
+                <b>L65 랜드마크타워 지하 3층 ~ 4층</b><br>
+                (웨딩홀 전용 주차장 이용)
+            </p>
+            <p class="trans-desc">· 예식 하객 2시간 무료 주차 지원</p>
+        </div>
+
+</div>
+</section>
+
+<section class="account-section">
+    <div class="title-area">
+        <span class="eng-title">ACCOUNT</span>
+        <h2 class="kor-title">마음 전하실 곳</h2>
+    </div>
+
+    <div class="account-desc">
+        참석이 어려우신 분들을 위해<br>
+        계좌번호를 기재하였습니다.<br>
+        너그러운 마음으로 양해 부탁드립니다.
+    </div>
+
+    <div class="account-container">
+        <div class="acc-box">
+            <button class="acc-btn" onclick="toggleAccount('acc-groom', this)">
+                신랑측 계좌번호
+                <span class="acc-arrow">∨</span>
+            </button>
+            <div id="acc-groom" class="acc-content">
+                <div class="acc-row">
+                    <div class="acc-info">
+                        <span class="acc-name">신랑 오윤식</span>
+                        <span class="acc-bank">국민은행 018-301-04164496</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('018-301-04164496')">복사</button>
+                </div>
+                <div class="acc-row">
+                    <div class="acc-info">
+                        <span class="acc-name">아버지 오영철</span>
+                        <span class="acc-bank">국민은행 000-00-000000</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('000-00-000000')">복사</button>
+                </div>
+                <div class="acc-row">
+                    <div class="acc-info">
+                        <span class="acc-name">어머니 이금하</span>
+                        <span class="acc-bank">우리은행 1002-000-000000</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('1002-000-000000')">복사</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="acc-box">
+            <button class="acc-btn" onclick="toggleAccount('acc-bride', this)">
+                신부측 계좌번호
+                <span class="acc-arrow">∨</span>
+            </button>
+            <div id="acc-bride" class="acc-content">
+                <div class="acc-row">
+                    <div class="acc-info">
+                        <span class="acc-name">신부 박혜미</span>
+                        <span class="acc-bank">하나은행 110-000-000000</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('110-000-000000')">복사</button>
+                </div>
+                <div class="acc-row">
+                    <div class="acc-info">
+                        <span class="acc-name">아버지 박호철</span>
+                        <span class="acc-bank">농협 000-00-000000</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('000-00-000000')">복사</button>
+                </div>
+                <div class="acc-row">
+                    <div class="acc-info">
+                        <span class="acc-name">어머니 장환순</span>
+                        <span class="acc-bank">카카오뱅크 3333-00-0000000</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('3333-00-0000000')">복사</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="toast-msg" class="toast">계좌번호가 복사되었습니다.</div>
+
+
+<section class="middle-visual">
+    <div class="img-box">
+        <img src="img/sample02.jpg" alt="아름다운 우리" class="full-img">
+    </div>
+</section>
+
+<section class="guestbook">
+    <div class="title-area">
+        <span class="eng-title">GUESTBOOK</span>
+        <h2 class="kor-title">방명록</h2>
+    </div>
+
+    <div class="guestbook-main-list" id="mainGuestbookList">
+        <div class="loading-msg" style="text-align:center; padding:20px; color:#ccc;">
+            메시지를 불러오는 중... ⏳
+        </div>
+    </div>
+
+    <div class="guest-more-area" id="moreBtnArea">
+        <button class="more-view-btn" onclick="showMoreGuestbook()">
+            더보기 <span style="font-size: 10px; margin-top:2px; margin-left: 5px;">∨</span>
+        </button>
+    </div>
+
+    <div class="guest-write-area">
+        <button class="write-floating-btn" onclick="openGuestbook()">
+            작성하기 ✏️
+        </button>
+    </div>
+</section>
+
+<!--방명록 부분-->
+<div id="guestbookModal" class="modal-overlay">
+    <div class="guest-write-box">
+        <div class="guest-header">
+            <h3>방명록 (축하 글)작성</h3>
+            <button class="close-btn-black" onclick="closeGuestbook()">✕</button>
+        </div>
+
+        <div class="guest-form">
+            <div class="input-group">
+                <label>이름 <span class="required">*</span></label>
+                <input type="text" id="gName" placeholder="이름을 입력해 주세요">
+            </div>
+
+            <div class="input-group">
+                <label>비밀번호 <span class="required">*</span></label>
+                <input type="password" id="gPw" placeholder="비밀번호를 입력해 주세요">
+            </div>
+
+            <div class="input-group">
+                <label>내용 <span class="required">*</span></label>
+                <textarea id="gMsg" placeholder="내용을 작성해 주세요 (최대 500자)"></textarea>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitGuestbook()">
+            신랑 & 신부에게 <b>축하 글 전달하기</b>
+        </button>
+    </div>
+</div>
+
+<div id="allGuestbookModal" class="modal-overlay">
+    <div class="guest-write-box"> <div class="guest-header">
+            <h3>방명록 전체보기</h3>
+            <button class="close-btn-black" onclick="closeAllGuestbook()">✕</button>
+        </div>
+
+        <div id="guestbookListArea" class="guest-list-wrap">
+            <div class="loading-msg">데이터를 불러오는 중입니다... ⏳</div>
+        </div>
+
+    </div>
+</div>
+
+
+<section class="snap-section" id="snapSection">
+    <div class="title-area snap-anim-title">
+        <span class="eng-title">CAPTURE OUR MOMENTS</span>
+        <h2 class="kor-title">스냅</h2>
+    </div>
+
+    <div class="snap-content">
+        <div class="polaroid-deco">
+            <img src="img/gallery1.jpg" class="p-img p1 snap-anim-photo">
+            <img src="img/gallery2.jpg" class="p-img p2 snap-anim-photo">
+            <img src="img/gallery3.jpg" class="p-img p3 snap-anim-photo">
+        </div>
+
+        <p class="snap-desc snap-anim-text">
+            신랑신부의 행복한 순간을 담아주세요.<br>
+            예식 당일, 아래 버튼을 통해 사진을 올려주세요.<br>
+            많은 참여 부탁드려요! 📷
+        </p>
+
+        <input type="file" id="snapFile" accept="image/*" style="display: none;" onchange="uploadSnapPhoto()">
+        
+        <button class="snap-upload-btn snap-anim-btn" onclick="triggerFileUpload()">
+            사진 업로드
+        </button>
+
+        <p class="snap-date-info snap-anim-text">
+            2026-10-10 예식 당일부터<br>
+            업로드 가능합니다.
+        </p>
+    </div>
+</section>
+
+
+
+
+
+<!--포토모델 팝업-->
+<div id="photoModal" class="modal-overlay" onclick="closePhoto()">
+    <div class="photo-modal-content">
+        <img id="modalImg" src="">
+        <button class="close-x-white" onclick="closePhoto()">✕</button>
+    </div>
+</div>
+
+<!--지도 팝업-->
+<div id="mapModal" class="modal-overlay" onclick="closeMapModal()">
+    <div class="photo-modal-content" onclick="event.stopPropagation()">
+        <img src="img/map-inner.jpg" alt="약도 상세" style="width: 100%; border-radius: 8px;">
+        
+        <button class="close-x-white" onclick="closeMapModal()">✕</button>
+    </div>
+</div>
+
+<div id="kakaotalk-sharing-btn" onclick="shareKakao()" style="cursor:pointer;">
+    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" alt="카톡공유">
+    <span>카카오톡으로 초대장 보내기</span>
+</div>
+
+<footer style="text-align: center; padding: 40px 20px; color: #ccc; font-size: 11px; line-height: 1.5;">
+    <p>Copyright 2026. YOONSIK & HYEMI. All rights reserved.</p>
+    <p style="margin-top: 5px; color: #aaa;">
+        업체 안 쓰고 신랑이 영혼을 갈아 직접 코딩했습니다. 💻<br>
+        (버그를 발견하시면... 비밀로 해주세요 🤫)
+    </p>
+</footer>
+
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="js/confetti.js"></script>
+    <script src="js/startCountdown.js"></script>
+    <script src="js/submitGuestbook.js"></script>
+        
+    <script src="js/script.js"></script>
+</body>
+</html>
