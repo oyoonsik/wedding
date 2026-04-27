@@ -13,8 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' d='M50 20c5-15 25-15 25 0 0 10-15 20-25 30C40 40 25 30 25 20c0-15 20-15 25 0z'/%3E%3Cpath fill='%23ffffff' d='M80 50c15 5 15 25 0 25-10 0-20-15-30-25 10-10 20-25 30-25c15 0 15 20 0 25z'/%3E%3Cpath fill='%23ffffff' d='M50 80c-5 15-25 15-25 0 0-10 15-20 25-30 10 10 25 20 25 30 0 15-20 15-25 0z'/%3E%3Cpath fill='%23ffffff' d='M20 50c-15-5-15-25 0-25 10 0 20 15 30 25-10 10-20 25-30 25-15 0-15-20 0-25z'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23ffdde1'/%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js" integrity="sha384-lLeY8799S7T5eL91l2403G5P3E2kU7R+E66H2/3vH9Y8+f4SpxnC9oB0D9S9xZ5W" crossorigin="anonymous"></script>
     <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw"></script>
     <script>
     window.addEventListener('load', function () {
@@ -644,7 +645,13 @@
     </div>
 </div>
 
-
+<section class="share-section" style="text-align: center; padding: 20px 0;">
+    <button id="kakaotalk-sharing-btn" style="background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+        <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" 
+             alt="카카오톡 공유 버튼" style="width: 24px;">
+        <span style="color: #3c1e1e; font-size: 15px; font-weight: 500;">카카오톡으로 초대장 보내기</span>
+    </button>
+</section>
 <footer style="text-align: center; padding: 40px 20px; color: #ccc; font-size: 11px; line-height: 1.5;">
     <p>Copyright 2026. YOONSIK & HYEMI. All rights reserved.</p>
     <p style="margin-top: 5px; color: #aaa;">
