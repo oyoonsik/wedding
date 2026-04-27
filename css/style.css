@@ -646,3 +646,132 @@ body {
     color: #fff;
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
+
+
+/* =========================================
+   [추가] 계좌번호 (마음 전하실 곳) 스타일
+   ========================================= */
+.account-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.account-desc {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.account-container {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.acc-box {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 토글 버튼 (헤더) */
+.acc-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #f6f6f6; /* 연한 회색 배경 */
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.acc-btn:hover { background-color: #eee; }
+
+.acc-arrow {
+    font-size: 12px;
+    color: #999;
+    transition: transform 0.3s;
+}
+.acc-btn.active .acc-arrow { transform: rotate(180deg); }
+
+/* 펼쳐지는 내용 */
+.acc-content {
+    display: none; /* 기본 숨김 */
+    background-color: #fff;
+    border: 1px solid #f6f6f6;
+    border-top: none;
+    padding: 10px 0;
+}
+
+.acc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f9f9f9;
+}
+.acc-row:last-child { border-bottom: none; }
+
+.acc-info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.acc-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+.acc-bank {
+    font-size: 13px;
+    color: #888;
+    font-family: 'Pretendard', sans-serif;
+    letter-spacing: 0;
+}
+
+/* 복사 버튼 (노란색) */
+.copy-btn {
+    background-color: #ffe045; /* 카카오페이 느낌 옐로우 */
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.1s;
+}
+.copy-btn:active { transform: scale(0.95); }
+
+/* 토스트 메시지 (복사 알림) */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+}
