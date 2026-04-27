@@ -703,6 +703,11 @@ body {
 }
 .acc-btn.active .acc-arrow { transform: rotate(180deg); }
 
+/* active 클래스가 붙었을 때만 보이게 설정 */
+.acc-content.active {
+    display: block;
+}
+
 /* 펼쳐지는 내용 */
 .acc-content {
     display: none; /* 기본 숨김 */
@@ -774,4 +779,49 @@ body {
 .toast.show {
     opacity: 1;
     visibility: visible;
+}
+
+/* 카카오 공유 버튼 컨테이너 */
+#kakaotalk-sharing-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+    max-width: 320px;
+    margin: 20px auto;
+    padding: 12px 20px;
+    background-color: #FEE500; /* 카카오 브랜드 컬러 */
+    color: #191919;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 호버 및 터치 시 효과 */
+#kakaotalk-sharing-btn:hover {
+    background-color: #FADA0A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#kakaotalk-sharing-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 카카오 아이콘 크기 조절 */
+#kakaotalk-sharing-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+/* 버튼 텍스트 스타일 */
+#kakaotalk-sharing-btn span {
+    letter-spacing: -0.5px;
 }
