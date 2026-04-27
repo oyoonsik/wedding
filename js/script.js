@@ -25,7 +25,7 @@ window.onload = () => {
         })
         .to("#intro", {
             opacity: 0,
-            duration: 0.5,
+            duration: 0.4,
             ease: "power2.inOut",
             onComplete: () => {
                 document.getElementById("intro").style.display = "none";
@@ -34,7 +34,7 @@ window.onload = () => {
         .from("#wrap", { 
             opacity: 0, 
             y: 30, 
-            duration: 1.0, 
+            duration: 0.8, 
             clearProps: "all" 
         }, "-=0.5");
         
@@ -270,7 +270,7 @@ function shareKakao() {
         content: {
             title: '윤식♥혜미 결혼합니다',
             description: '저희 두 사람의 결혼식에 소중한 분들을 초대합니다.',
-            imageUrl: 'https://oyoonsik.github.io/img/gallery2.jpg',
+            imageUrl: 'https://oyoonsik.github.io/wedding/img/gallery2.jpg',
             link: {
                 mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
                 webUrl: 'https://oyoonsik.github.io/wedding/',
