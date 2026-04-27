@@ -264,25 +264,26 @@ if (!Kakao.isInitialized()) {
     Kakao.init('03146ec5263f1b8199ad84c7268b683a'); 
 }
 
-Kakao.Share.createDefaultButton({
-    container: '#kakaotalk-sharing-btn',
-    objectType: 'feed',
-    content: {
-        title: '윤식♥혜미 결혼합니다',
-        description: '저희 두 사람의 결혼식에 소중한 분들을 초대합니다.',
-        imageUrl: 'https://oyoonsik.github.io/img/gallery2.jpg', // 서버에 올린 실제 이미지 주소
-        link: {
-            mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
-            webUrl: 'https://oyoonsik.github.io/wedding/',
-        },
-    },
-    buttons: [
-        {
-            title: '모바일 청첩장 보기',
+function shareKakao() {
+    Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: '윤식♥혜미 결혼합니다',
+            description: '저희 두 사람의 결혼식에 소중한 분들을 초대합니다.',
+            imageUrl: 'https://oyoonsik.github.io/img/gallery2.jpg',
             link: {
-                mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
-                webUrl: 'https://oyoonsik.github.io/wedding/',
+                mobileWebUrl: 'https://oyoonsik.github.io',
+                webUrl: 'https://oyoonsik.github.io',
             },
         },
-    ],
-});
+        buttons: [
+            {
+                title: '모바일 청첩장 보기',
+                link: {
+                    mobileWebUrl: 'https://oyoonsik.github.io',
+                    webUrl: 'https://oyoonsik.github.io',
+                },
+            },
+        ],
+    });
+}
