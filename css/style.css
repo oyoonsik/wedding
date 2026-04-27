@@ -784,6 +784,8 @@ body {
 /* 카카오 공유 버튼 컨테이너 */
 #kakaotalk-sharing-btn {
     display: flex;
+    position: relative; /* 필수 */
+    z-index: 9999;      /* 맨 앞으로 올리기 */
     align-items: center;
     justify-content: center;
     gap: 10px;
