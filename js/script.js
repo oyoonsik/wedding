@@ -255,3 +255,34 @@ function copyToClipboard(text) {
         toast.classList.remove("show");
     }, 2000);
 }
+
+/* =========================================
+   3. 카카오톡 공유 기능
+   ========================================= */
+if (!Kakao.isInitialized()) {
+    // 카카오 개발자 센터에서 발급받은 JavaScript 키를 입력하세요.
+    Kakao.init('03146ec5263f1b8199ad84c7268b683a'); 
+}
+
+Kakao.Share.createDefaultButton({
+    container: '#kakaotalk-sharing-btn',
+    objectType: 'feed',
+    content: {
+        title: '윤식♥혜미 결혼합니다',
+        description: '저희 두 사람의 결혼식에 소중한 분들을 초대합니다.',
+        imageUrl: 'https://oyoonsik.github.io/img/gallery2.jpg', // 서버에 올린 실제 이미지 주소
+        link: {
+            mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
+            webUrl: 'https://oyoonsik.github.io/wedding/',
+        },
+    },
+    buttons: [
+        {
+            title: '모바일 청첩장 보기',
+            link: {
+                mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
+                webUrl: 'https://oyoonsik.github.io/wedding/',
+            },
+        },
+    ],
+});
