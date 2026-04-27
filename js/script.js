@@ -13,9 +13,9 @@ window.onload = () => {
     masterTl
         .to(".typing-text", {
             width: "auto",
-            duration: 2.0,
+            duration: 0.8,
             ease: "steps(14)",
-            delay: 0.5
+            delay: 0.3
         })
         .to(".typing-text", {
             borderRightColor: "transparent",
@@ -25,12 +25,12 @@ window.onload = () => {
         })
         .to("#intro", {
             opacity: 0,
-            duration: 1.0,
+            duration: 0.5,
             ease: "power2.inOut",
             onComplete: () => {
                 document.getElementById("intro").style.display = "none";
             }
-        }, "+=0.3")
+        }, "+=0")
         .from("#wrap", { 
             opacity: 0, 
             y: 30, 
