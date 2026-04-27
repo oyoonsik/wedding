@@ -272,16 +272,16 @@ function shareKakao() {
             description: '저희 두 사람의 결혼식에 소중한 분들을 초대합니다.',
             imageUrl: 'https://oyoonsik.github.io/img/gallery2.jpg',
             link: {
-                mobileWebUrl: 'https://oyoonsik.github.io',
-                webUrl: 'https://oyoonsik.github.io',
+                mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
+                webUrl: 'https://oyoonsik.github.io/wedding/',
             },
         },
         buttons: [
             {
                 title: '모바일 청첩장 보기',
                 link: {
-                    mobileWebUrl: 'https://oyoonsik.github.io',
-                    webUrl: 'https://oyoonsik.github.io',
+                    mobileWebUrl: 'https://oyoonsik.github.io/wedding/',
+                    webUrl: 'https://oyoonsik.github.io/wedding/',
                 },
             },
         ],
