@@ -8,33 +8,20 @@
     <meta property="og:image" content="https://oyoonsik.github.io/wedding/img/gallery2.jpg">
     <title>윤식 ♥ 혜미 결혼합니다.</title>
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&display=swap" rel="stylesheet">
+    <!-- preconnect: 외부 도메인 미리 연결 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Google Fonts: 요청 1개로 합침 + display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Italiana&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Pretendard: 논블로킹 비동기 로드 -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"></noscript>
+
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' d='M50 20c5-15 25-15 25 0 0 10-15 20-25 30C40 40 25 30 25 20c0-15 20-15 25 0z'/%3E%3Cpath fill='%23ffffff' d='M80 50c15 5 15 25 0 25-10 0-20-15-30-25 10-10 20-25 30-25c15 0 15 20 0 25z'/%3E%3Cpath fill='%23ffffff' d='M50 80c-5 15-25 15-25 0 0-10 15-20 25-30 10 10 25 20 25 30 0 15-20 15-25 0z'/%3E%3Cpath fill='%23ffffff' d='M20 50c-15-5-15-25 0-25 10 0 20 15 30 25-10 10-20 25-30 25-15 0-15-20 0-25z'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23ffdde1'/%3E%3C/svg%3E">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"></script>
-    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw"></script>
-    <script>
-    window.addEventListener('load', function () {
-        if (!window.naver || !naver.maps) {
-            console.error('네이버 지도 API 로드 실패');
-            return;
-        }
-
-        const map = new naver.maps.Map('map', {
-            center: new naver.maps.LatLng(37.58055, 127.0479),
-            zoom: 16
-        });
-
-        new naver.maps.Marker({
-            position: new naver.maps.LatLng(37.58055, 127.0479),
-            map: map
-        });
-    });
-    </script>
 
 </head>
 <body>
@@ -470,7 +457,7 @@
                 <div class="acc-row">
                     <div class="acc-info">
                         <span class="acc-name">아버지 오영철</span>
-                        <span class="acc-bank">하나은행 280-910215-91807/span>
+                        <span class="acc-bank">하나은행 280-910215-91807</span>
                     </div>
                     <button class="copy-btn" onclick="copyToClipboard('280-910215-91807')">복사</button>
                 </div>
@@ -669,7 +656,31 @@
     <script src="js/confetti.js"></script>
     <script src="js/startCountdown.js"></script>
     <script src="js/submitGuestbook.js"></script>
-        
     <script src="js/script.js"></script>
+
+    <!-- 카카오 SDK: 비동기 로드 -->
+    <script async src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"
+        onload="if(!Kakao.isInitialized()) Kakao.init('03146ec5263f1b8199ad84c7268b683a');"></script>
+
+    <!-- 네이버 지도: 비동기 로드 후 지도 초기화 -->
+    <script>
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=az1w9ba1hw';
+        script.async = true;
+        script.onload = function() {
+            if (!window.naver || !naver.maps) return;
+            var map = new naver.maps.Map('map', {
+                center: new naver.maps.LatLng(37.58055, 127.0479),
+                zoom: 16
+            });
+            new naver.maps.Marker({
+                position: new naver.maps.LatLng(37.58055, 127.0479),
+                map: map
+            });
+        };
+        document.body.appendChild(script);
+    })();
+    </script>
 </body>
 </html>
