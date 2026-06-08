@@ -5,22 +5,21 @@
 // GSAP 플러그인 등록
 gsap.registerPlugin(ScrollTrigger);
 
-/* 1. 페이지 로드 완료 시 실행되는 메인 로직 */
-window.onload = () => {
-    // [Part A] 인트로 애니메이션 (타이핑 효과)
+/* 1-A. DOM 준비되자마자 인트로 바로 시작 (이미지 로드 안 기다림) */
+document.addEventListener('DOMContentLoaded', () => {
     const masterTl = gsap.timeline();
 
     masterTl
         .to(".typing-text", {
             width: "auto",
-            duration: 0.8,
+            duration: 0.6,
             ease: "steps(14)",
-            delay: 0.3
+            delay: 0.1
         })
         .to(".typing-text", {
             borderRightColor: "transparent",
-            duration: 0.5,
-            repeat: 3,
+            duration: 0.3,
+            repeat: 1,
             yoyo: true
         })
         .to("#intro", {
@@ -37,7 +36,10 @@ window.onload = () => {
             duration: 0.8, 
             clearProps: "all" 
         }, "-=0.5");
-        
+});
+
+/* 1-B. 스크롤 애니메이션 & BGM — 모든 리소스 로드 후 실행 */
+window.addEventListener('load', () => {
     // [Part B] 스크롤 애니메이션
     const revealEls = document.querySelectorAll('.reveal:not(.main_visual .reveal):not(.greeting):not(.family-section):not(.interview-section):not(.gallery-section):not(.calendar-section):not(.location-section):not(.guestbook):not(.snap-section):not(.middle-visual)');
     revealEls.forEach((el) => {
@@ -147,7 +149,7 @@ window.onload = () => {
     }
 
     initBGM();
-};
+});
 
 /* 2. 기능 함수들 */
 
@@ -259,11 +261,6 @@ function copyToClipboard(text) {
 /* =========================================
    3. 카카오톡 공유 기능
    ========================================= */
-if (!Kakao.isInitialized()) {
-    // 카카오 개발자 센터에서 발급받은 JavaScript 키를 입력하세요.
-    Kakao.init('03146ec5263f1b8199ad84c7268b683a'); 
-}
-
 function shareKakao() {
     Kakao.Share.sendDefault({
         objectType: 'feed',
