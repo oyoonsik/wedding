@@ -307,7 +307,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: inline-flex;
     align-items: center; gap: 5px; font-family: 'Noto Serif KR', serif;
 }
-.gallery-grid.expanded { max-height: 2000px; }
+.gallery-grid.expanded { /* max-height는 script.js의 expandGallery()에서 실제 콘텐츠 높이로 동적으로 설정됨 */ }
 .more-btn-wrap.hidden { display: none; }
 .photo-modal-content {
     width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;
