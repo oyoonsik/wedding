@@ -199,7 +199,10 @@ function openInterview() { document.getElementById('interviewModal').classList.a
 function closeInterview() { document.getElementById('interviewModal').classList.remove('active'); }
 
 function expandGallery() {
-    document.getElementById('galleryGrid').classList.add('expanded');
+    const grid = document.getElementById('galleryGrid');
+    // 실제 콘텐츠 높이만큼 max-height를 풀어줘서 사진 개수가 몇 장이든 안 잘리게 함
+    grid.style.maxHeight = grid.scrollHeight + "px";
+    grid.classList.add('expanded');
     document.getElementById('moreBtnWrap').classList.add('hidden');
 }
 function viewPhoto(img) {
