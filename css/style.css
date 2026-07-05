@@ -269,7 +269,7 @@ body {
 .photo-box img { width: 100%; height: 100%; object-fit: cover; }
 .interview-btn {
     width: 100%; max-width: 320px; padding: 15px; border: 1px solid #f0dcd6;
-    background: #fff; border-radius: 50px; color: #8c7b75;
+    background: #fff; border-radius: 50px; color: #8c7b75; opacity: 1;
     font-size: 14px; font-family: 'Noto Serif KR', serif; cursor: pointer;
     transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto;
 }
