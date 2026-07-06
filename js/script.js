@@ -2,6 +2,14 @@
    [통합] UI 및 애니메이션 스크립트 (윤식♥혜미 결혼식)
    ========================================================================= */
 
+// 새로고침 시 브라우저가 이전 스크롤 위치로 자동 점프하는 걸 막습니다.
+// (이게 켜져 있으면 ScrollTrigger가 위치를 계산하는 타이밍과 충돌해서
+//  중간에 새로고침했을 때 요소들이 숨겨진 채로 안 나타나는 버그가 생김)
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // GSAP 플러그인 등록
 gsap.registerPlugin(ScrollTrigger);
 
@@ -151,8 +159,9 @@ window.addEventListener('load', () => {
     initBGM();
 
     // 이미지 로드 등으로 레이아웃이 미세하게 바뀌었을 수 있으니
-    // 모든 ScrollTrigger 등록이 끝난 뒤 위치를 한 번 재계산합니다.
-    ScrollTrigger.refresh();
+    // 모든 ScrollTrigger 등록이 끝난 뒤, 그리고 브라우저가 레이아웃을
+    // 한 번 더 정리할 시간을 주기 위해 requestAnimationFrame으로 한 프레임 미룬 뒤 재계산합니다.
+    requestAnimationFrame(() => ScrollTrigger.refresh());
 });
 
 /* 2. 기능 함수들 */
