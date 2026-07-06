@@ -68,9 +68,9 @@ window.addEventListener('load', () => {
             scrollTrigger: { trigger: ".interview-section", start: "top 75%", toggleActions: "play none none reverse" }
         });
         interviewTl
-            .from(".interview-header > *", { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" })
-            .from(".photo-box", { y: 50, opacity: 0, duration: 0.8, stagger: 0.3, ease: "back.out(1.2)" }, "-=0.4")
-            .from(".interview-btn", { scale: 0.8, opacity: 0, duration: 0.5, ease: "elastic.out(1, 0.6)" }, "-=0.2");
+            .from(".interview-header > *", { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out", clearProps: "all" })
+            .from(".photo-box", { y: 50, opacity: 0, duration: 0.8, stagger: 0.3, ease: "back.out(1.2)", clearProps: "all" }, "-=0.4")
+            .from(".interview-btn", { scale: 0.8, opacity: 0, duration: 0.5, ease: "elastic.out(1, 0.6)", clearProps: "all" }, "-=0.2");
     }
 
     if(document.querySelector('.gallery-section')) {
@@ -149,6 +149,10 @@ window.addEventListener('load', () => {
     }
 
     initBGM();
+
+    // 이미지 로드 등으로 레이아웃이 미세하게 바뀌었을 수 있으니
+    // 모든 ScrollTrigger 등록이 끝난 뒤 위치를 한 번 재계산합니다.
+    ScrollTrigger.refresh();
 });
 
 /* 2. 기능 함수들 */
