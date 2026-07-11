@@ -290,13 +290,13 @@ body {
 .gallery-section { padding: 80px 20px; background-color: #fff; text-align: center; }
 .gallery-header { margin-bottom: 30px; }
 .gallery-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; 
+    display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 44vw; gap: 10px; 
     max-height: 500px; overflow: hidden; position: relative; 
     transition: max-height 0.5s ease-in-out; 
 }
-.gallery-item { position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 1 / 1; }
+.gallery-item { position: relative; border-radius: 4px; overflow: hidden; }
 .gallery-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
-.gallery-item.tall { grid-row: span 2; aspect-ratio: 1 / 2.05; }
+.gallery-item.tall { grid-row: span 2; }
 .more-btn-wrap {
     position: relative; margin-top: -80px; padding-top: 80px; padding-bottom: 20px;
     background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%); z-index: 5;
